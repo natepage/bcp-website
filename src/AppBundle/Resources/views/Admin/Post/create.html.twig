@@ -1,0 +1,35 @@
+{% extends 'AppBundle:Admin:layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/bcp-posts.css') }}">
+{% endblock stylesheets %}
+
+{% block admin_content %}
+    {% if fb.userLongAccessToken.tokenIsEmpty %}
+        {% set currentPath = url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
+
+        <div class="alert alert-warning">
+            <div class="row">
+                <div class="col-md-1">
+                    <i class="fa fa-5x fa-facebook-official"></i>
+                </div>
+                <div class="col-md-11" style="padding-top: 10px;">
+                    Un problème est survenue lors de la connexion à Facebook.
+                    Merci de bien vouloir essayer de vous (re)connecter manuellement.
+
+                    <a href="{{ fb.loginUrl(currentPath) }}" class="btn btn-default">Connexion Facebook</a>
+                </div>
+            </div>
+        </div><!-- /.alert alert-warning -->
+    {% endif %}
+
+    <h3 class="page-header bcp-page-header">Création d'un article</h3>
+    {% include '@App/Admin/Post/form.html.twig' %}
+{% endblock admin_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/app/assets/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/bcp-functions.js') }}"></script>
+{% endblock javascripts %}

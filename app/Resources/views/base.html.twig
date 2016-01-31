@@ -1,0 +1,104 @@
+{% set siteTitle = "BCP Poitevin" %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="robots" content="noindex, nofollow">
+
+        <meta charset="UTF-8" />
+        <meta http-equiv="content-language" content="fr">
+        <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+        <meta http-equiv="X-UA-Compatible" content="IE=8;IE=9;IE=edge">
+        <meta name="author" content="{{ siteTitle }}" />
+        <meta name="keywords" content="bowling,poitiers,bcp,club,poitevin,bowling club poitevin" />
+        <title>{% block title %}{{ siteTitle }}{% endblock %}</title>
+
+        {% block meta_og %}
+            <meta property="og:locale" content="fr_FR" />
+            <meta property="og:title" content="{{ siteTitle }}" />
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content="{{ url('homepage') }}" />
+            <meta property="og:image" content="{{ asset('bundles/app/img/logo_bcp.jpg') }}" />
+        {% endblock meta_og %}
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap-superhero.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/app/css/font-awesome.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/app/css/bcp-styles.css') }}">
+        {% endblock stylesheets %}
+
+        {% block favicon %}
+            <link rel="icon" type="image/x-icon" href="{{ asset('bundles/app/img/logo_bcp.jpg') }}" />
+        {% endblock favicon %}
+    </head>
+    <body class="body-with-fixed-navbar">
+        {% block header %}
+            {% include ':default:navbar.html.twig' %}
+        {% endblock header %}
+
+        {% block container %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        {% block flashbags %}
+                            {% for type in ['info', 'success', 'danger', 'warning'] %}
+                                {% for message in app.session.flashbag.get(type) %}
+                                    <div class="alert alert-{{ type }} alert-dissmisible">
+                                        <button type="button" class="close" data-dismiss="alert">
+                                            <span aria-hidden="true">&times;</span>
+                                            <span class="sr-only">Fermer</span>
+                                        </button>
+                                        {{ message|raw }}
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endblock flashbags %}
+                    </div><!-- /.col-lg-12 -->
+                </div><!-- /.row -->
+
+                {% block body %}{% endblock body %}
+            </div><!-- /.container -->
+        {% endblock container %}
+
+        {% block footer %}
+            {% include ':default:footer.html.twig' %}
+        {% endblock footer %}
+
+        {% block javascripts %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+            <script type="text/javascript" src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
+
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    /**
+                     * Gestion affichage des alertes
+                     */
+                    var cpt = 1;
+                    $('.alert-dissmisible').each(function () {
+                        var alert = this;
+                        var hideTimeOut = setTimeout(function () {
+                            $(alert).fadeOut("slow");
+                        }, 3000 * cpt);//setTimeout
+                        cpt++;
+                    });//each
+
+                    /**
+                     * Gestion chargement asynchrone des images
+                     */
+                    $('.bcp-post-illustration-preview').each(function(){
+                        var illuDiv = $(this);
+                        var imgDl = new Image();
+
+                        imgDl.onload = function(){
+                            illuDiv.css('background-image', 'url(' + this.src + ')');
+                            illuDiv.html('');
+                            illuDiv.removeAttr('data-img');
+                        };
+
+                        imgDl.src = illuDiv.data('img');
+                    });
+                });
+            </script>
+        {% endblock %}
+    </body>
+</html>

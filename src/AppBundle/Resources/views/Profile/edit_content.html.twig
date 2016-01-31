@@ -1,0 +1,40 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit form-horizontal">
+    {{ form_label(form.username) }}
+    {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+    {% if form_errors(form.username) %}
+        <div class="alert alert-danger">{{ form_errors(form.username) }}</div>
+    {% endif %}
+
+    {{ form_label(form.email) }}
+    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+    {% if form_errors(form.email) %}
+        <div class="alert alert-danger">{{ form_errors(form.email) }}</div>
+    {% endif %}
+
+    {{ form_label(form.current_password) }}
+    {{ form_widget(form.current_password, {'attr': {'class': 'form-control'}}) }}
+    {% if form_errors(form.current_password) %}
+        <div class="alert alert-danger">{{ form_errors(form.current_password) }}</div>
+    {% endif %}
+
+    {{ form_label(form.licence) }}
+    {{ form_widget(form.licence, {'attr': {'class': 'form-control'}}) }}
+    {% if form_errors(form.licence) %}
+        <div class="alert alert-danger">{{ form_errors(form.licence) }}</div>
+    {% endif %}
+
+    {{ form_widget(form.newsletter) }} {{ form_label(form.newsletter, null, {'label_attr': {'style': 'display:inline;'}}) }}
+    {% if form_errors(form.newsletter) %}
+        <div class="alert alert-danger">{{ form_errors(form.newsletter) }}</div>
+    {% endif %}
+
+    {{ form_rest(form) }}
+
+    <hr>
+
+    <div class="text-center">
+        <input type="submit" class="btn btn-primary" value="{{ 'profile.edit.submit'|trans }}" />
+    </div>
+</form>

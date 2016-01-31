@@ -1,0 +1,23 @@
+<form id="bcp-form-newsletter" method="POST" action="{{ path('front_newsletter_register') }}" {% if large %}style="width: 300px;"{% endif %}>
+    <h3 class="page-header bcp-page-header">Newsletter</h3>
+    <span class="help-block">
+        Vous désirez être informé(e) des nouveautés du Bowling Club Poitevin ? Soumettez nous votre email et nous vous ferons signe !
+    </span>
+    <input type="text" name="bcp-newsletter-mail" class="form-control" placeholder="Votre mail ici..." value="{{ app.request.get('search') }}">
+
+    <button type="submit" class="btn btn-primary pull-right">
+        <i class="fa fa-search"></i> Valider
+    </button>
+</form>
+<div style="height: 60px;"></div>
+
+<script type="text/javascript">
+    function submitNewsletterForm(){
+        var form = document.getElementById('bcp-form-newsletter');
+        var mail = document.getElementsByName('bcp-newsletter-mail');
+
+        if(mail.value != ''){
+            form.submit();
+        }
+    }
+</script>

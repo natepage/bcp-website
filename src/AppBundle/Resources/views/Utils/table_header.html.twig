@@ -1,0 +1,13 @@
+{% macro pc_table_header(pagination, fields) %}
+    {% for field in fields %}
+        <th>
+            {% if pagination.isSorted(field.name) %}
+                <i class="fa fa-sort"></i>
+            {% endif %}
+            {{ knp_pagination_sortable(pagination, field.render, field.name) }}
+        </th>
+    {% endfor %}
+    <th>
+        <i class="fa fa-cogs"></i> Actions
+    </th>
+{% endmacro %}

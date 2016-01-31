@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} | Administration
+{% endblock title %}
+
+{% block body %}
+    <div class="row bcp-mt">
+        <div class="col-md-3">
+            {% block admin_sidebar %}
+                <div class="list-group">
+                    {% if is_granted('ROLE_PAGE_SEE') %}
+                        <a href="{{ path('admin_entity_list', {'entity': 'page'}) }}" class="list-group-item">
+                            <i class="fa fa-file-text-o"></i> Pages
+                        </a><!-- /.list-group-item -->
+                    {% endif %}
+                    {% if is_granted('ROLE_POST_SEE') %}
+                    <a href="{{ path('admin_entity_list', {'entity': 'post'}) }}" class="list-group-item">
+                        <i class="fa fa-newspaper-o"></i> Articles
+                    </a><!-- /.list-group-item -->
+                    {% endif %}
+                    {% if is_granted('ROLE_USER_SEE') %}
+                    <a href="{{ path('admin_entity_list', {'entity': 'user'}) }}" class="list-group-item">
+                        <i class="fa fa-users"></i> Utilisateurs
+                    </a><!-- /.list-group-item -->
+                    {% endif %}
+                    {% if is_granted('ROLE_NEWSLETTER_SEE') %}
+                        <a href="{{ path('admin_entity_list', {'entity': 'newsletter'}) }}" class="list-group-item">
+                            <i class="fa fa-send-o"></i> Newsletter
+                        </a><!-- /.list-group-item -->
+                    {% endif %}
+                </div><!-- /.list-group -->
+
+                {% include '@App/Utils/search_form.html.twig' %}
+            {% endblock admin_sidebar %}
+        </div><!-- /.col-md-3 -->
+        <div class="col-md-9">{% block admin_content %}{% endblock admin_content %}</div><!-- /.col-md-9 -->
+    </div><!-- /.row -->
+{% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+{% endblock javascripts %}

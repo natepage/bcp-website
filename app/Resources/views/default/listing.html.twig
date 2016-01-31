@@ -1,0 +1,19 @@
+{% extends ':default:index.html.twig' %}
+
+{% block content %}
+    <table class="table table-striped">
+        <tr class="info">
+            {% for key, value in listing|first %}
+                <th>{{ key|capitalize }}</th>
+            {% endfor %}
+        </tr><!-- /.info -->
+
+        {% for joueur in listing %}
+            <tr>
+                {% for attr in joueur %}
+                    <td>{{ attr }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table><!-- /.table -->
+{% endblock content %}

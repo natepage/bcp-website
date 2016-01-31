@@ -1,0 +1,15 @@
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
+wrong_router:
+    path: /{url}
+    defaults: { _controller: AppBundle:Default:wrongRoute }
+    requirements:
+        url: ".+"

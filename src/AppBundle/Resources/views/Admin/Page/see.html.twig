@@ -1,0 +1,28 @@
+{% extends 'AppBundle:Admin:layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/bcp-posts.css') }}">
+{% endblock stylesheets %}
+
+{% block admin_content %}
+    <div class="row page-header bcp-page-header">
+        <div class="col-md-8 bcp-np">
+            <h3>
+                {{ entity.title }} {% if entity.published %}[Publié]{% endif %}
+                <span class="help-block">Par {{ entity.authorName }}, le {{ entity.created | date('d/m/Y, H:i') }}</span>
+            </h3>
+        </div><!-- /.col-md-8 -->
+        <div class="col-md-4 bcp-np text-right">
+            <a href="{{ path('admin_post_update', {'id': entity.id}) }}" class="btn btn-default">
+                <i class="fa fa-pencil"></i> Modifier
+            </a>
+            <a href="{{ path('admin_entity_list', {'entity': 'post'}) }}" class="btn btn-default">
+                <i class="fa fa-chevron-left"></i> Retour
+            </a>
+        </div><!-- /.col-md-4 -->
+    </div><!-- /.page-header bcp-page-header -->
+    <img class="bcp-post-illustration" src="{{ asset(entity.image.webPath) }}">
+
+    {{ entity.content | raw }}
+{% endblock admin_content %}

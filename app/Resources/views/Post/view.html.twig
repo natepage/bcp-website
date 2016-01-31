@@ -1,0 +1,55 @@
+{% extends ':default:index.html.twig' %}
+{% set url = url('front_article_view', {'slug': post.slug}) %}
+{% import '@App/Utils/illustrations_render.html.twig' as illuRender %}
+
+{% block title %}
+    {{ parent() }} | {{ post.title }}
+{% endblock title %}
+
+{% block meta_og %}
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content="{{ siteTitle }} | {{ post.title }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ url }}" />
+    {% if post.images|length > 0 %}
+        <meta property="og:image" content="{{ asset(post.images.first.webPath, absolute=true) }}" />
+    {% endif %}
+{% endblock meta_og %}
+
+{% block content %}
+    <div class="bcp-post-header">
+        <div class="col-md-9" style="padding: 0;">
+            <h1 class="text-danger" style="margin: 0; padding: 0;">{{ post.title }}</h1>
+            <p class="help-block">Par {{ post.authorName }} - {{ post.created|date('d/m/Y à H:i') }}</p>
+        </div>
+        <div class="col-md-3" style="padding: 0;">
+            <a href="{{ backUrl }}" class="btn btn-default pull-right">
+                <i class="fa fa-chevron-left"></i> Retour
+            </a>
+        </div>
+    </div>
+    {{ illuRender.showIllustrations(post.images) }}
+    <div class="bcp-post-content-container">
+        {{ post.content|raw }}
+    </div>
+    <div class="bcp-post-pdfs-container">
+        {% for pdf in post.pdfs %}
+            <a class="btn text-center" target="_blank" href="{{ asset(pdf.webPath) }}"><i class="fa fa-file-pdf-o fa-2x"></i><br>{{ pdf.alt }}</a>
+        {% endfor %}
+    </div>
+    <hr>
+    <div class="text-left">
+        <blockquote>
+            <small class="help-block">Vous avez aimé cet article ? Partagez le !</small>
+            <a href="http://www.facebook.com/sharer/sharer.php?u={{ url }}&title={{ post.title }}" class="btn btn-default bcp-social-share-link" title="Facebook"><i class="fa fa-facebook"></i></a>
+            <a href="http://twitter.com/intent/tweet?status={{ post.title }}+{{ url }}" class="btn btn-default bcp-social-share-link" title="Twitter"><i class="fa fa-twitter"></i></a>
+            <a href="https://plus.google.com/share?url={{ url }}" class="btn btn-default bcp-social-share-link" title="Google+"><i class="fa fa-google-plus"></i></a>
+            <a href="mailto:?subject={{ post.title }}&body={{ url }}" class="btn btn-default bcp-social-share-link" title="Email"><i class="fa fa-send"></i></a>
+        </blockquote>
+    </div><!-- /.text-left -->
+{% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/app/js/bcp-functions.js') }}"></script>
+{% endblock javascripts %}

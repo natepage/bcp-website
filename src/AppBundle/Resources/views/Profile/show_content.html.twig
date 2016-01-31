@@ -1,0 +1,22 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="fos_user_user_show">
+    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    <p>N° de licence: {{ user.licence }}</p>
+    {% if user.licence is not null and user.licence != '' %}
+        {{ render(controller('AppBundle:User:bowlingInfos', {'num_licence': user.licence})) }}
+    {% endif %}
+    {% if user.newsletter %}
+        <p>
+            <i class="fa fa-check"></i> J'accepte de recevoir des mails de la part de l'équipe du BCP pour m'informer des nouveautés.
+        </p>
+    {% endif %}
+
+    <hr>
+
+    <div class="text-center">
+        <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default"><i class="fa fa-pencil"></i> Modifier</a>
+        <a href="{{ path('homepage') }}" class="btn btn-primary">Accéder au site</a>
+    </div>
+</div>

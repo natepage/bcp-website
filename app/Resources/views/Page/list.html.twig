@@ -1,0 +1,14 @@
+<div class="list-group" {% if large %}style="width: 300px;"{% endif %}>
+    {% for page in pages %}
+        <a href="{{ path('front_page_view', {'slug': page.slug}) }}" class="list-group-item">
+            <h4 class="list-group-item-heading">{{ page.title }}</h4>
+        </a><!-- /.list-group-item -->
+    {% endfor %}
+
+    <a href="{{ path('front_listing') }}" class="list-group-item">
+        <h4 class="list-group-item-heading">Listing</h4>
+    </a><!-- /.list-group-item -->
+    <a href="{{ path('front_gallery') }}" class="list-group-item">
+        <h4 class="list-group-item-heading">Gallery</h4>
+    </a><!-- /.list-group-item -->
+</div><!-- /.list-group -->

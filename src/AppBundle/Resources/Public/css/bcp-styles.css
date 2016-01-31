@@ -1,0 +1,110 @@
+/** FONTS */
+@font-face {
+    font-family: "American Captain";
+    src: url('../fonts/american-captain.ttf');
+}
+
+.body-with-fixed-navbar {
+    padding-top: 140px;
+}
+
+.bcp-page-header {
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+
+.bcp-ml {
+    margin-left: 10px;
+}
+
+.bcp-mr {
+    margin-right: 10px;
+}
+
+.bcp-mt {
+    margin-top: 10px;
+}
+
+.bcp-mb {
+    margin-bottom: 10px;
+}
+
+.bcp-pl {
+    padding-left: 10px;
+}
+
+.bcp-pr {
+    padding-right: 10px;
+}
+
+.bcp-pt {
+    padding-top: 10px;
+}
+
+.bcp-pb {
+    padding-bottom: 10px;
+}
+
+.bcp-np {
+    padding: 0;
+}
+
+.bcp-nm {
+    margin: 0;
+}
+
+/** NAVBAR */
+.bcp-navbar {
+
+    -moz-box-shadow: 0 0 20px 0 rgba(0, 0, 0, .4);
+    -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, .4);
+    -o-box-shadow: 0 0 20px 0 rgba(0, 0, 0, .4);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, .4);
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=rgba(0, 0, 0, .4), Direction=180, Strength=5);
+}
+
+.navbar-default .navbar-collapse {
+    padding-top: 35px;
+}
+
+.navbar-default .navbar-toggle {
+    margin-top: 45px;
+}
+
+.navbar, .dropdown-menu li a {
+    font-size: 19px;
+}
+
+.navbar-brand {
+    height: auto;
+    font-family: "American Captain", sans-serif;
+    font-size: 50px;
+}
+
+.navbar-brand img {
+    max-height: 100px;
+    display: inline;
+}
+
+/** FOOTER */
+.bcp-footer {
+    margin-top: 20px;
+    min-height: 50px;
+    background-color: #4e5d6c;
+    font-size: 24px;
+}
+
+/** GOOGLE */
+.bcp-cookie-consent {
+    position: fixed;
+    top: 0;
+    z-index: 5000;
+    background-color: #2b3e50;
+    opacity: .9;
+    width: 100%;
+    text-align: center;
+}
+
+#google-pub-adsense-mobile {
+    text-align: center;
+}

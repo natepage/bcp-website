@@ -1,0 +1,19 @@
+{% extends "::fos_user_layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_title %}Confirmation{% endblock fos_user_title %}
+
+{% block fos_user_content %}
+    <div class="text-center">
+        <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+        {% if app.session is not empty %}
+            {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+            {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>{% endif %}
+        {% endif %}
+
+        <hr>
+
+        <a href="{{ path('homepage') }}" class="btn btn-primary">Accéder au site</a>
+    </div><!-- /.text-center -->
+{% endblock fos_user_content %}

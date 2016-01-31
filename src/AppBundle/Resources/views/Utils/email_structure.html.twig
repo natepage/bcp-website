@@ -1,0 +1,36 @@
+<div style="background-color: #2b3e50; color: #ebebeb; font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+    <table align="left" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tbody>
+            <tr style="background-color: #4e5d6c;">
+                <td align="left" style="width: 50px; padding: 20px;">
+                    <img src="{{ asset('bundles/app/img/logo_bcp.jpg', absolute=true) }}" style="max-height: 100px; border-radius: 50%; display: inline; vertical-align: middle;">
+                </td>
+                <td align="left">
+                    <span style="font-size: 50px;"><a href="{{ url('homepage') }}" style="color: #FFF; text-decoration: none;">Bowling Club Poitevin</a></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table align="center" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            <tr>
+                <td style="padding: 0 30px;">
+                    {% block email_body %}{{ body|raw }}{% endblock email_body %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table align="left" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tbody>
+            <tr style="background-color: #4e5d6c;">
+                <td align="center">
+                    <p>Bowling Club Poitevin</p>
+                    <p>11 Place des Sablons 86000 POITIERS</p>
+                    <p>bowlingclubpoitevin@gmail.com</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

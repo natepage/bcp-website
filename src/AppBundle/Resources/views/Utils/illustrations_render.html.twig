@@ -1,0 +1,37 @@
+{% macro showIllustrations(images) %}
+    {% if images|length > 0 %}
+        <div class="bcp-post-illustration-container">
+        {% if images|length == 1 %}
+            <img class="bcp-post-illustration" src="{{ images.first.webPath|imagine_filter('post_view') }}" alt="img-{{ images.first.id }}">
+        {% else %}
+            <div id="bcp-post-illustrations-carousel" class="carousel slide" data-ride="carousel" data-interval="10000">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    {% for image in images %}
+                        <li data-target="#carousel-example-generic" data-slide-to="0"{% if loop.first %} class="active"{% endif %}></li>
+                    {% endfor %}
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    {% for image in images %}
+                        <div class="item{% if loop.first %} active{% endif %}">
+                            <img style="height: 400px; width: 100%;" src="{{ asset(image.webPath) }}" alt="img-{{ image.id }}">
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#bcp-post-illustrations-carousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Précédente</span>
+                </a>
+                <a class="right carousel-control" href="#bcp-post-illustrations-carousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Suivante</span>
+                </a>
+            </div>
+        {% endif %}
+        </div>
+    {% endif %}
+{% endmacro %}

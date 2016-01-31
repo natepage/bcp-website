@@ -1,0 +1,18 @@
+{% extends 'AppBundle:Admin:layout.html.twig' %}
+
+{% block admin_content %}
+    <h3 class="page-header bcp-page-header">Envoi d'un email à <b>{{ user.username }}</b></h3>
+
+    <form method="POST" class="form-horizontal">
+        {{ form_widget(form) }}
+        <hr>
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-send"></i> Envoyer
+        </button>
+    </form><!-- /.form-horizontal -->
+{% endblock admin_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/app/assets/ckeditor/ckeditor.js') }}"></script>
+{% endblock javascripts %}

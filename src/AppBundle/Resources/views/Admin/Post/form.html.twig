@@ -1,0 +1,51 @@
+{% import '@App/Utils/post_form_prototype.html.twig' as utils %}
+
+{% if form_errors(form) %}
+    <div class="alert alert-danger">
+        {{ form_errors(form) }}
+    </div><!-- /.alert alert-danger -->
+{% endif %}
+
+<form class="form-horizontal dropzone" method="POST" {{ form_enctype(form) }}>
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.content) }}
+
+    {{ form_label(form.images) }}
+    <div class="row bcp-form-post-images-container" data-prototype="{{ utils.imagesPrototype(form.images.vars.prototype, form.previewImageKey)|e }}">
+        {% for image in form.images %}
+            {{ utils.imagesPrototype(image, form.previewImageKey) }}
+        {% endfor %}
+        {{ utils.imagesAddToggle() }}
+    </div>
+
+    {{ form_label(form.pdfs) }} {{ utils.pdfsAddToggle() }}
+    <div class="row bcp-form-post-pdfs-container" data-prototype="{{ utils.pdfsPrototype(form.pdfs.vars.prototype)|e }}">
+        {% for pdf in form.pdfs %}
+            {{ utils.pdfsPrototype(pdf) }}
+        {% endfor %}
+    </div>
+
+    {{ form_row(form.published) }}
+    {{ form_row(form.newsletter) }}
+    {{ form_row(form.facebook) }}
+    {{ form_row(form.facebook_message) }}
+    {{ form_row(form._token) }}
+
+    {% if post.sharedNewsletter or post.fbId %}
+        <div class="alert alert-info">
+            {% if post.sharedNewsletter %}
+                <p>Cet article a été diffusé à la Newsletter le {{ post.sharedNewsletter|date('d/m/Y à H:i') }}.</p>
+            {% endif %}
+            {% if post.fbId %}
+                <p>Cet article a été diffusé sur <a href="http://www.facebook.com/{{ post.fbId }}">Facebook</a></p>
+            {% endif %}
+        </div><!-- /.alert alert-info -->
+    {% endif %}
+
+    <hr>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary bcp-form-btn-validate" data-validate-text="Envoi du formulaire...">Valider</button>
+    </div>
+</form>

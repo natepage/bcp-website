@@ -1,0 +1,64 @@
+{% extends 'AppBundle:Admin:layout.html.twig' %}
+{% import '@App/Utils/table_header.html.twig' as pc_utils %}
+
+{% set fields = [
+    {"name": "p.created", "render": "Créée le"},
+    {"name": "p.title", "render": "Titre"},
+    {"name": "p.authorName", "render": "Auteur"},
+    {"name": "p.priority", "render": "Priorité"},
+    {"name": "p.published", "render": "Publiée"}
+] %}
+
+{% block admin_content %}
+    <div class="row bcp-mb">
+        <div class="col-md-12">
+            <div class="pull-left">
+                <h3 class="bcp-page-header">Liste des pages ({{ pagination.getTotalItemCount }})</h3>
+            </div>
+            <div class="pull-right">
+                {% if is_granted('ROLE_PAGE_CREATE') %}
+                <a href="{{ path('admin_page_create') }}" class="btn btn-default">
+                    <i class="fa fa-plus-circle"></i> Créer une page
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr class="bg-primary">
+                {{ pc_utils.pc_table_header(pagination, fields) }}
+            </tr>
+        </thead>
+
+        {% for page in pagination %}
+            <tr>
+                <td>{{ page.created | date('d/m/Y, H:i') }}</td>
+                <td style="max-width: 350px;">{{ page.title }}</td>
+                <td>{{ page.authorName }}</td>
+                <td>{{ page.priority }}</td>
+                <td>{% if page.published %}<i class="fa fa-check-circle"></i>{% endif %}</td>
+                <td>
+                    <a href="{{ path('admin_entity_see', {'entity': 'page', 'id': page.id}) }}" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="Visualiser">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                    {% if is_granted('ROLE_ADMIN') or (is_granted('ROLE_PAGE_UPDATE') and page.isOwn(app.user.id)) %}
+                        <a href="{{ path('admin_page_update', {'id': page.id}) }}" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="Modifier">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') or (is_granted('ROLE_PAGE_REMOVE') and page.isOwn(app.user.id)) %}
+                        <a href="{{ path('admin_page_remove', {'id': page.id}) }}" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Supprimer">
+                            <i class="fa fa-remove"></i>
+                        </a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table><!-- /.table-bordered -->
+
+    <div class="text-center">
+        {{ knp_pagination_render(pagination) }}
+    </div><!-- /.text-center -->
+{% endblock admin_content %}

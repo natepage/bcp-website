@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}En construction - {{ parent() }}{% endblock title %}
+
+{% block body %}
+        <div class="jumbotron" style="margin-top: 100px;">
+            <img src="{{ asset('bundles/app/img/worker5.png') }}" style="margin: 30px;" class="pull-left" alt="En construction...">
+
+            <h1>En construction</h1>
+            <p>
+                Ce site est actuellement en construction, l'équipe du Bowling Club Poitevin de Poitiers vous donne
+                rendez-vous prochainement.
+            </p>
+            <p>
+                En attendant, l'ancienne version du site est toujours accessible :
+                <a href="http://www.bowling-poitiers.com">Bowling-poitiers</a>.
+            </p>
+        </div><!-- /.jumbotron -->
+{% endblock body %}

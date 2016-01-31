@@ -1,0 +1,33 @@
+{% extends 'AppBundle:Admin:layout.html.twig' %}
+
+{% block admin_content %}
+    <div class="row page-header bcp-page-header">
+        <div class="col-md-8 bcp-np">
+            <h3>
+                {{ entity.username }}
+            </h3>
+        </div><!-- /.col-md-8 -->
+        <div class="col-md-4 bcp-np text-right">
+            <a href="{{ path('admin_user_update', {'id': entity.id}) }}" class="btn btn-default">
+                <i class="fa fa-pencil"></i> Modifier
+            </a>
+            <a href="{{ path('admin_entity_list', {'entity': 'user'}) }}" class="btn btn-default">
+                <i class="fa fa-chevron-left"></i> Retour
+            </a>
+        </div><!-- /.col-md-4 -->
+    </div><!-- /.page-header bcp-page-header -->
+
+    <div class="row">
+        <div class="col-md-4">
+            <p><b>Email : </b> {{ entity.email }}</p>
+            <p><b>Activé(e) : </b> {% if entity.enabled %}<i class="fa fa-check-circle"></i>{% endif %}</p>
+            <p><b>Bloqué(e) : </b> {% if entity.locked %}<i class="fa fa-check-circle"></i>{% endif %}</p>
+            <p><b>Dernière connexion : </b> {% if entity.lastLogin is not null %}{{ entity.lastLogin | date('d/m/Y, H:i') }}{% endif %}</p>
+        </div><!-- /.col-md-4 bcp-np -->
+        <div class="col-md-8">
+            <p><b>Roles :</b>{% for role in entity.roles %}
+                {{ role }} <br>
+                {% endfor %}</p>
+        </div><!-- /.col-md-8 bcp-np -->
+    </div><!-- /.row -->
+{% endblock admin_content %}

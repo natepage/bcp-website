@@ -1,0 +1,8 @@
+<form class="form-horizontal dropzone" method="POST" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <hr>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary bcp-form-btn-validate" data-validate-text="Envoi du formulaire...">Valider</button>
+    </div>
+</form>

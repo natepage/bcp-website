@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Introuvable - {{ parent() }}{% endblock title %}
+
+{% block body %}
+        <div class="jumbotron" style="padding-left: 30px; padding-right: 30px;">
+            <h1>Le contenu auquel vous essayez d'accéder n'existe pas ou plus...</h1>
+            <p>
+                Nous vous prions de bien vouloir nous excuser pour la gêne occasionnée, nous vous
+                conseillons de vérifier si l'adresse dans votre barre de recherche ne contient aucune erreur
+                ou encore de <a href="{{ path('homepage') }}">retourner sur la page d'accueil</a>.
+            </p>
+        </div><!-- /.jumbotron -->
+{% endblock body %}

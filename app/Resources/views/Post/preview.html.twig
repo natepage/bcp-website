@@ -1,0 +1,42 @@
+{% set imgUrl = post.images|length > 0 ? post.previewImage.webPath : 'bundles/app/img/logo_bcp.jpg' %}
+
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="bcp-post-box-preview{% if not post.published %}-no-published{% endif %}">
+        <a class="" href="{{ path('front_article_view', {'slug': post.slug}) }}">
+            <div class="bcp-post-illustration-preview" data-img="{{ imgUrl|imagine_filter('post_preview') }}">
+                <i class="fa fa-5x fa-spin fa-circle-o-notch bcp-image-loader"></i>
+            </div><!-- /.bcp-post-illustration-preview -->
+            <h3 class="bcp-post-title-preview">
+                {% if post.title|length < 140 %}{{ post.title }}{% else %}{{ post.title|slice(0, 134) }}...{% endif %}
+            </h3>
+            <div class="bcp-post-description-preview">
+                {% if is_granted('ROLE_ADMIN') or post.isOwn(app.user.id) %}
+                    <div class="bcp-post-description-preview-cd"></div>
+                {% endif %}
+                <h3 class="bcp-post-description-preview-title">
+                    {% if post.title|length < 140 %}{{ post.title }}{% else %}{{ post.title|slice(0, 134) }}...{% endif %}
+                </h3>
+                <div class="bcp-post-description-preview-content">
+                    {{ post.description }}
+                </div>
+            </div><!-- /.bcp-post-extract-preview -->
+            <div class="bcp-post-footer-preview">
+                <span>{{ post.created|date('d/m/y') }}</span>
+                <span><i class="fa fa-user"></i> {{ post.authorName }}</span>
+                {# <span><i class="fa fa-eye"></i> {{ post.views }}</span> #}
+            </div><!-- /.bcp-post-extract-preview -->
+        </a>
+        {% if app.user is not null %}
+            {% if is_granted('ROLE_ADMIN') or post.isOwn(app.user.id) %}
+                <div class="bcp-post-admin-box-preview">
+                    {% if is_granted('ROLE_POST_UPDATE') %}
+                        <a href="{{ path('admin_post_update', {'id': post.id}) }}"><i class="fa fa-pencil"></i> Modifier</a>
+                    {% endif %}
+                    {% if is_granted('ROLE_POST_REMOVE') %}
+                        <a href="{{ path('admin_post_remove', {'id': post.id}) }}"><i class="fa fa-remove"></i> Supprimer</a>
+                    {% endif %}
+                </div><!-- /.bcp-post-admin-box-preview -->
+            {% endif %}
+        {% endif %}
+    </div><!-- /.bcp-post-box-preview -->
+</div><!-- /.col-md-6 col-sm-12 -->

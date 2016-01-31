@@ -1,0 +1,12 @@
+<form method="GET">
+    <h3 class="page-header bcp-page-header">Recherche rapide</h3>
+    <input type="text" name="search" class="form-control" placeholder="Recherche rapide..." value="{{ app.request.get('search') }}">
+
+    <button type="submit" class="btn btn-primary pull-right">
+        <i class="fa fa-search"></i> Valider
+    </button>
+    <a class="btn btn-default pull-right" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}">
+        <i class="fa fa-refresh"></i> Réinitialiser
+    </a>
+</form>
+<div style="height: 60px;"></div>

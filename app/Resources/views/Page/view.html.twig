@@ -1,0 +1,35 @@
+{% extends ':default:index.html.twig' %}
+
+{% set url = url('front_page_view', {'slug': page.slug}) %}
+
+{% block title %}
+    {{ parent() }} | {{ page.title }}
+{% endblock title %}
+
+{% block meta_og %}
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content="{{ siteTitle }} | {{ page.title }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ url }}" />
+    <meta property="og:image" content="{{ asset('bundles/app/img/logo_bcp.jpg') }}" />
+{% endblock meta_og %}
+
+{% block content %}
+    <h1 class="text-danger">{{ page.title }}</h1>
+    {{ page.content|raw }}
+    <hr>
+    <div class="text-left">
+        <blockquote>
+            <small class="help-block">Vous avez aimé cette page ? Partagez la !</small>
+            <a href="http://www.facebook.com/sharer/sharer.php?u={{ url }}&title={{ page.title }}" class="btn btn-default bcp-social-share-link" title="Facebook"><i class="fa fa-facebook"></i></a>
+            <a href="http://twitter.com/intent/tweet?status={{ page.title }}+{{ url }}" class="btn btn-default bcp-social-share-link" title="Twitter"><i class="fa fa-twitter"></i></a>
+            <a href="https://plus.google.com/share?url={{ url }}" class="btn btn-default bcp-social-share-link" title="Google+"><i class="fa fa-google-plus"></i></a>
+            <a href="mailto:?subject={{ page.title }}&body={{ url }}" class="btn btn-default bcp-social-share-link" title="Email"><i class="fa fa-send"></i></a>
+        </blockquote>
+    </div><!-- /.text-left -->
+{% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/app/js/bcp-functions.js') }}"></script>
+{% endblock javascripts %}

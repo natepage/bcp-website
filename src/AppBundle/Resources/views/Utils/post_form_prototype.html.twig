@@ -1,0 +1,54 @@
+{% macro imagesPrototype(imgForm, previewImageKeyForm) %}
+    {% set name = imgForm.vars.name %}
+    {% set hasImg = name != '__name__' %}
+
+    <div class="col-md-3 bcp-form-post-image-col">
+        <div class="bcp-form-post-image-input-container{% if hasImg %}-remove{% endif %} thumbnail">
+            <div class="bcp-form-post-image-toggle-remove-container" onclick="imageRemove(this);">
+                <i class="fa fa-5x fa-remove"></i>
+            </div><!-- /.bcp-form-post-image-toggle-remove-container -->
+
+            {% if not hasImg %}
+                <div class="bcp-form-post-image-empty">
+                    <i class="fa fa-5x fa-image"></i>
+                </div><!-- /.bcp-form-post-image-empty -->
+            {% else %}
+                <img class="bcp-form-post-image-preview" style="height: 100%;" src="{{ asset(imgForm.vars.value.webPath) }}">
+            {% endif %}
+
+            <input{% if hasImg %} style="height: 0;"{% endif %} onchange="imagePreview(this);" class="bcp-form-post-image-input" type="file" id="appbundle_post_images_{{ name }}_file" name="appbundle_post[images][{{ name }}][file]" />
+        </div><!-- /.bcp-form-post-image-input-container -->
+
+        <input type="radio" class="bcp-form-post-image-preview-key-radio" id="appbundle_post_previewImageId_{{ name }}" name="appbundle_post[previewImageKey]" value="{{ name }}" {% if previewImageKeyForm.vars.value == name %}checked{% endif %}>
+        <label for="appbundle_post_previewImageId_{{ name }}"></label>
+    </div><!-- /.col-md-3 -->
+{% endmacro %}
+
+{% macro imagesAddToggle() %}
+    <div class="col-md-3 bcp-form-post-toggle-col">
+        <div class="bcp-form-post-image-toggle-add-container">
+            <i class="fa fa-5x fa-plus-circle"></i>
+        </div><!-- /.bcp-form-post-image-toggle-container -->
+    </div><!-- /.col-md-3 -->
+{% endmacro %}
+
+{% macro pdfsPrototype(pdfForm) %}
+    {% set name = pdfForm.vars.name %}
+    {% set hasPdf = name != '__name__' %}
+
+    <div class="col-md-12">
+        <input type="file" style="display: {% if not hasPdf %}inline{% else %}none{% endif %}; color: #FFF;" id="appbundle_post_pdfs_{{ name }}_file" class="bcp-form-post-pdf-input" name="appbundle_post[pdfs][{{ name }}][file]" {% if hasPdf %}value="{{ asset(pdfForm.vars.value.webPath) }}"{% endif %} />
+        {% if hasPdf %}
+            <span>{{ pdfForm.vars.value.alt }}</span>
+        {% endif %}
+        <button type="button" class="btn btn-xs btn-danger" onclick="pdfRemove(this);">
+            <i class="fa fa-remove"></i> Supprimer
+        </button>
+    </div>
+{% endmacro %}
+
+{% macro pdfsAddToggle() %}
+    <button type="button" class="btn btn-xs btn-success bcp-form-post-pdf-add">
+        <i class="fa fa-plus"></i> Ajouter un PDF
+    </button>
+{% endmacro %}
