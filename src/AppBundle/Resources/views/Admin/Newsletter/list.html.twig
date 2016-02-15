@@ -24,6 +24,13 @@
         {% for newsletter in pagination %}
             <tr>
                 <td>{{ newsletter.mail }}</td>
+                <td>
+                    {% if is_granted('ROLE_NEWSLETTER_REMOVE') %}
+                        <a href="{{ path('admin_newsletter_remove', {'id': newsletter.id}) }}" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Supprimer">
+                            <i class="fa fa-remove"></i>
+                        </a>
+                    {% endif %}
+                </td>
             </tr>
         {% endfor %}
     </table><!-- /.table-bordered -->

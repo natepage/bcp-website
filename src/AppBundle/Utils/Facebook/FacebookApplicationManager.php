@@ -215,14 +215,14 @@ class FacebookApplicationManager
 
             if(count($post->getImages()) > 0){
                 $hompage = $this->router->generate('homepage', array(), true);
-                $imgWebPath = $this->assetsHelper->getUrl($post->getImages()->first()->getWebPath());
+                $imgWebPath = $this->assetsHelper->getUrl($post->getPreviewImage()->getWebPath());
                 $params['picture'] = $hompage . $imgWebPath;
             }
 
             $endPoint = (null === $post->getFbId()) ? $this->pageId . '/feed' : $post->getFbId();
 
             $postAsPage = $this->application
-                               ->post('/' . $this->pageId . '/feed', $params, $getPageAccessToken['access_token'])
+                               ->post('/' . $endPoint, $params, $getPageAccessToken['access_token'])
                                ->getDecodedBody();
 
             $response->setId(isset($postAsPage['id']) ? $postAsPage['id'] : $post->getFbId());

@@ -28,17 +28,22 @@
 
     {{ form_row(form.published) }}
     {{ form_row(form.newsletter) }}
-    {{ form_row(form.facebook) }}
-    {{ form_row(form.facebook_message) }}
+
+    {% if post.fbId %}
+        <div class="hidden">
+            {{ form_row(form.facebook) }}
+            {{ form_row(form.facebook_message) }}
+        </div>
+    {% endif %}
     {{ form_row(form._token) }}
 
     {% if post.sharedNewsletter or post.fbId %}
         <div class="alert alert-info">
             {% if post.sharedNewsletter %}
-                <p>Cet article a été diffusé à la Newsletter le {{ post.sharedNewsletter|date('d/m/Y à H:i') }}.</p>
+                <p><i class="fa fa-2x fa-send-o"></i> Cet article a été diffusé à la Newsletter le {{ post.sharedNewsletter|date('d/m/Y à H:i') }}.</p>
             {% endif %}
             {% if post.fbId %}
-                <p>Cet article a été diffusé sur <a href="http://www.facebook.com/{{ post.fbId }}">Facebook</a></p>
+                <p><i class="fa fa-2x fa-facebook-official"></i> Cet article a été diffusé sur Facebook, <a target="_blank" href="http://www.facebook.com/{{ post.fbId }}"><b>accédez y !</b></a></p>
             {% endif %}
         </div><!-- /.alert alert-info -->
     {% endif %}
