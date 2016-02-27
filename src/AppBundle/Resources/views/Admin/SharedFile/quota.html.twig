@@ -1,0 +1,12 @@
+{% if exception is not null %}
+    <div class="alert alert-danger">{{ exception }}</div>
+{% elseif size == 0 %}
+    <div class="alert alert-info">Le dossier de partage de fichiers est vide, vous avez 10 Go disponible.</div>
+{% else %}
+    <h3 style="margin-top: 0">Taille des fichiers sur le serveur :</h3>
+    <div class="progress">
+        <div class="progress-bar progress-bar-{{ class }}" role="progressbar" aria-valuenow="{{ size }}" aria-valuemin="0" aria-valuemax="{{ maxSize }}" style="width: {{ percent }}%">
+            <span class="text-center">{{ size }}/{{ maxSize }} Mo</span>
+        </div>
+    </div>
+{% endif %}

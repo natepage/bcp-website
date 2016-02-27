@@ -1,0 +1,66 @@
+{% extends 'AppBundle:Admin:layout.html.twig' %}
+{% import '@App/Utils/table_header.html.twig' as pc_utils %}
+
+{% set fields = [
+    {"name": "s.created", "render": "Créé le"},
+    {"name": "s.title", "render": "Titre"},
+    {"name": "s.submitted", "render": "Partagé ?"},
+] %}
+
+{% block admin_content %}
+    <div class="row bcp-mb">
+        <div class="col-md-12">
+            {{ render(controller('AppBundle:SharedFile:quota')) }}
+        </div>
+    </div>
+
+    <div class="row bcp-mb">
+        <div class="col-md-12">
+            <div class="pull-left">
+                <h3 class="bcp-page-header">Liste des fichiers partagés ({{ pagination.getTotalItemCount }})</h3>
+            </div>
+            <div class="pull-right">
+                {% if is_granted('ROLE_SHARED_FILE_CREATE') %}
+                    <a href="{{ path('admin_shared_file_create') }}" class="btn btn-default">
+                        <i class="fa fa-plus-circle"></i> Créer un fichier partagé
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr class="bg-primary">
+                {{ pc_utils.pc_table_header(pagination, fields) }}
+            </tr>
+        </thead>
+
+        {% for sharedFile in pagination %}
+            <tr>
+                <td>{{ page.created | date('d/m/Y, H:i') }}</td>
+                <td style="max-width: 350px;">{{ page.title }}</td>
+                <td>{% if page.submitted %}<i class="fa fa-check-circle"></i>{% endif %}</td>
+                <td>
+                    <a href="{{ path('admin_entity_see', {'entity': 'sharedFile', 'id': sharedFile.id}) }}" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="Visualiser">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                    {% if is_granted('ROLE_SHARED_FILE_UPDATE') %}
+                        <a href="{{ path('admin_shared_file_update', {'id': sharedFile.id}) }}" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="Modifier">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    {% endif %}
+                    {% if is_granted('ROLE_SHARED_FILE_REMOVE') %}
+                        <a href="{{ path('admin_shared_file_remove', {'id': sharedFile.id}) }}" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Supprimer">
+                            <i class="fa fa-remove"></i>
+                        </a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table><!-- /.table-bordered -->
+
+    <div class="text-center">
+        {{ knp_pagination_render(pagination) }}
+    </div><!-- /.text-center -->
+{% endblock admin_content %}

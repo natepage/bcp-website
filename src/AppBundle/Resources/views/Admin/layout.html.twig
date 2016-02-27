@@ -29,6 +29,11 @@
                             <i class="fa fa-send-o"></i> Newsletter
                         </a><!-- /.list-group-item -->
                     {% endif %}
+                    {% if is_granted('ROLE_SHARED_FILE_SEE') %}
+                        <a href="{{ path('admin_entity_list', {'entity': 'sharedFile'}) }}" class="list-group-item">
+                            <i class="fa fa-files-o"></i> Fichiers partagés
+                        </a><!-- /.list-group-item -->
+                    {% endif %}
                 </div><!-- /.list-group -->
 
                 {% include '@App/Utils/search_form.html.twig' %}
