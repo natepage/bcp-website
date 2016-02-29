@@ -43,6 +43,20 @@ class SharedFile
     private $title;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="mail_from", type="string", length=255, nullable=true)
+     */
+    private $from;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mail_to", type="string", length=255, nullable=true)
+     */
+    private $to;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="submitted", type="boolean", options={"default": false})
@@ -50,11 +64,19 @@ class SharedFile
     private $submitted;
 
     /**
+     * @var File
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\File", mappedBy="sharedFile", cascade={"persist","remove"})
+     */
+    private $file;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->created = new \DateTime();
+        $this->from = null;
         $this->submitted = false;
     }
 
@@ -138,6 +160,52 @@ class SharedFile
     }
 
     /**
+     * Set from
+     *
+     * @param string $from
+     * @return SharedFile
+     */
+    public function setFrom($from)
+    {
+        $this->from = $from;
+
+        return $this;
+    }
+
+    /**
+     * Get from
+     *
+     * @return string
+     */
+    public function getFrom()
+    {
+        return $this->from;
+    }
+
+    /**
+     * Set to
+     *
+     * @param string $to
+     * @return SharedFile
+     */
+    public function setTo($to)
+    {
+        $this->to = $to;
+
+        return $this;
+    }
+
+    /**
+     * Get to
+     *
+     * @return string
+     */
+    public function getTo()
+    {
+        return $this->to;
+    }
+
+    /**
      * Set submitted
      *
      * @param $submitted
@@ -158,6 +226,34 @@ class SharedFile
     public function getSubmitted()
     {
         return $this->submitted;
+    }
+
+    /**
+     * Set file.
+     *
+     * @param File $file
+     * @return SharedFile
+     */
+    public function setFile(File $file)
+    {
+        $this->file = $file;
+        $file->setSharedFile($this);
+
+        return $this;
+    }
+
+    /**
+     * Get file.
+     *
+     * @return File
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function isOwn($from){
+        return $this->from !== null && $this->from === $from;
     }
 
     public static function getSearchFields()

@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\SharedFile;
+use AppBundle\Form\SharedFileType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -22,25 +24,90 @@ class SharedFileController extends Controller
      */
     public function createAction(Request $request)
     {
+        $sharedFile = new SharedFile();
+        $form = $this->createForm(new SharedFileType(), $sharedFile);
+        $from = $this->getUser()->getEmail();
 
+        if($form->handleRequest($request)->isValid()){
+            $em = $this->getDoctrine()->getManager();
+
+            $sharedFile->setFrom($this->getUser()->getEmail());
+
+            $em->persist($sharedFile);
+            $em->flush();
+
+            $flash = sprintf("Le fichier partagé \"%s\"a bien été créé.", $sharedFile->getTitle());
+            $request->getSession()->getFlashBag()->add('success', $flash);
+
+            return $this->redirect($this->generateUrl('admin_entity_list', array('entity' => 'sharedFile')));
+        }
+
+        return $this->render('@App/Admin/SharedFile/create.html.twig', array(
+            'form' => $form->createView(),
+            'sharedFile' => $sharedFile
+        ));
     }
 
     /**
-     * @Route("/update", name="admin_shared_file_update")
+     * @Route("/update/{id}", name="admin_shared_file_update", requirements={"id": "\d+"})
      * @Security("has_role('ROLE_SHARED_FILE_UPDATE')")
      */
-    public function updateAction(Request $request)
+    public function updateAction(Request $request, $id)
     {
+        $em = $this->getDoctrine()->getManager();
 
+        if(null === $sharedFile = $em->getRepository('AppBundle:SharedFile')->find($id)){
+            throw $this->createNotFoundException(sprintf("Le fichier partagé à l'id %s n'existe pas.", $id));
+        }
+
+        $form = $this->createForm(new SharedFileType(), $sharedFile);
+
+        if($form->handleRequest($request)->isValid()){
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($sharedFile);
+            $em->flush();
+
+            $flash = sprintf("Le fichier partagé \"%s\"a bien été modifié.", $sharedFile->getTitle());
+            $request->getSession()->getFlashBag()->add('success', $flash);
+
+            return $this->redirect($this->generateUrl('admin_entity_list', array('entity' => 'sharedFile')));
+        }
+
+        return $this->render('@App/Admin/SharedFile/update.html.twig', array(
+            'form' => $form->createView(),
+            'sharedFile' => $sharedFile
+        ));
     }
 
     /**
-     * @Route("/remove", name="admin_shared_file_remove")
+     * @Route("/remove/{id}", name="admin_shared_file_remove", requirements={"id": "\d+"})
      * @Security("has_role('ROLE_SHARED_FILE_REMOVE')")
      */
-    public function removeAction(Request $request)
+    public function removeAction(Request $request, $id)
     {
+        $em = $this->getDoctrine()->getManager();
 
+        if(null === $sharedFile = $em->getRepository('AppBundle:SharedFile')->find($id)){
+            throw $this->createNotFoundException(sprintf("Le fichier partagé à l'id %s n'existe pas.", $id));
+        }
+
+        $form = $this->createFormBuilder()->getForm();
+
+        if($form->handleRequest($request)->isValid()){
+            $em->remove($sharedFile);
+            $em->flush();
+
+            $flash = sprintf("Le fichier partagé \"%s\"a bien été supprimé.", $sharedFile->getTitle());
+            $request->getSession()->getFlashBag()->add('success', $flash);
+
+            return $this->redirect($this->generateUrl('admin_entity_list', array('entity' => 'sharedFile')));
+        }
+
+        return $this->render('@App/Admin/SharedFile/remove.html.twig', array(
+            'form' => $form->createView(),
+            'sharedFile' => $sharedFile
+        ));
     }
 
     /**

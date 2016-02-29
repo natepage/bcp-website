@@ -4,6 +4,7 @@
 {% set fields = [
     {"name": "s.created", "render": "Créé le"},
     {"name": "s.title", "render": "Titre"},
+    {"name": "s.file", "render": "Fichier"},
     {"name": "s.submitted", "render": "Partagé ?"},
 ] %}
 
@@ -38,19 +39,20 @@
 
         {% for sharedFile in pagination %}
             <tr>
-                <td>{{ page.created | date('d/m/Y, H:i') }}</td>
-                <td style="max-width: 350px;">{{ page.title }}</td>
-                <td>{% if page.submitted %}<i class="fa fa-check-circle"></i>{% endif %}</td>
+                <td>{{ sharedFile.created | date('d/m/Y, H:i') }}</td>
+                <td style="max-width: 350px;">{{ sharedFile.title }}</td>
+                <td>{% if sharedFile.file is not null %}{{ sharedFile.file.alt }}{% endif %}</td>
+                <td>{% if sharedFile.submitted %}<i class="fa fa-check-circle"></i>{% endif %}</td>
                 <td>
                     <a href="{{ path('admin_entity_see', {'entity': 'sharedFile', 'id': sharedFile.id}) }}" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="Visualiser">
                         <i class="fa fa-eye"></i>
                     </a>
-                    {% if is_granted('ROLE_SHARED_FILE_UPDATE') %}
+                    {% if is_granted('ROLE_ADMIN') or (is_granted('ROLE_SHARED_FILE_UPDATE') and sharedFile.isOwn(app.user.email)) %}
                         <a href="{{ path('admin_shared_file_update', {'id': sharedFile.id}) }}" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="Modifier">
                             <i class="fa fa-pencil"></i>
                         </a>
                     {% endif %}
-                    {% if is_granted('ROLE_SHARED_FILE_REMOVE') %}
+                    {% if is_granted('ROLE_ADMIN') or (is_granted('ROLE_SHARED_FILE_REMOVE') and sharedFile.isOwn(app.user.email)) %}
                         <a href="{{ path('admin_shared_file_remove', {'id': sharedFile.id}) }}" class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Supprimer">
                             <i class="fa fa-remove"></i>
                         </a>

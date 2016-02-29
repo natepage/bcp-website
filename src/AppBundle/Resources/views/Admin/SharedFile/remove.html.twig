@@ -1,9 +1,9 @@
 {% extends 'AppBundle:Admin:layout.html.twig' %}
 
 {% block admin_content %}
-    <h3 class="page-header bcp-page-header">Suppression d'une page</h3>
+    <h3 class="page-header bcp-page-header">Suppression d'un fichier partagé</h3>
     <p>
-        Vous êtes sur le point de supprimer la page <b>"{{ page.title }}"</b>, cette action est
+        Vous êtes sur le point de supprimer le fichier partagé <b>"{{ sharedFile.title }}"</b>, cette action est
         irréversible.
     </p>
     <p>Voulez-vous vraiment continuer?</p>
@@ -15,7 +15,7 @@
             <button type="submit" class="btn btn-danger">
                 <i class="fa fa-remove"></i> Supprimer
             </button>
-            <a href="{{ path('admin_entity_list', {'entity': 'page'}) }}" class="btn btn-default">
+            <a href="{{ path('admin_entity_list', {'entity': 'sharedFile'}) }}" class="btn btn-default">
                 <i class="fa fa-chevron-left"></i> Retour
             </a>
         </form>

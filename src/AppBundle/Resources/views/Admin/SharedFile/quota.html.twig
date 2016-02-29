@@ -1,7 +1,7 @@
 {% if exception is not null %}
-    <div class="alert alert-danger">{{ exception }}</div>
+    <div class="alert alert-danger bcp-nm">{{ exception }}</div>
 {% elseif sizeInMo == 0 %}
-    <div class="alert alert-info">Le dossier de partage de fichiers est vide, vous avez {{ maxSizeText }} disponibles.</div>
+    <div class="alert alert-info bcp-nm">Le dossier de partage de fichiers est vide, vous avez {{ maxSizeText }} disponibles.</div>
 {% else %}
     <h3 style="margin-top: 0">Espace sur le serveur ({{ maxSizeText }}) :</h3>
     <div class="progress">
