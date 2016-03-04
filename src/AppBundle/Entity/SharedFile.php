@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * SharedFile
@@ -62,6 +63,13 @@ class SharedFile
      * @ORM\Column(name="submitted", type="boolean", options={"default": false})
      */
     private $submitted;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="token", type="string", length=255, nullable=true)
+     */
+    private $token;
 
     /**
      * @var File
@@ -226,6 +234,29 @@ class SharedFile
     public function getSubmitted()
     {
         return $this->submitted;
+    }
+
+    /**
+     * Set token
+     *
+     * @param $token
+     * @return SharedFile
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 
     /**

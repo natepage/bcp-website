@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\SharedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table()
@@ -33,7 +33,7 @@ class File
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\SharedFile", inversedBy="file")
      */
     private $sharedFile;
-
+    
     private $file;
 
     private $tempFilename;

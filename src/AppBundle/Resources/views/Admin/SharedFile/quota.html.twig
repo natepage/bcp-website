@@ -3,10 +3,12 @@
 {% elseif sizeInMo == 0 %}
     <div class="alert alert-info bcp-nm">Le dossier de partage de fichiers est vide, vous avez {{ maxSizeText }} disponibles.</div>
 {% else %}
-    <h3 style="margin-top: 0">Espace sur le serveur ({{ maxSizeText }}) :</h3>
-    <div class="progress">
-        <div class="progress-bar progress-bar-{{ class }}" role="progressbar" aria-valuenow="{{ sizeInMo }}" aria-valuemin="0" aria-valuemax="{{ maxSizeNumber }}" style="width: {{ percent }}%">
-            <span class="text-center">{{ formattedSize }}</span>
+    <h3 style="margin-top: 0">Espace sur le serveur : {{ formattedSize }} / {{ maxSizeText }}</h3>
+    {% if percent > 1 %}
+        <div class="progress">
+            <div class="progress-bar progress-bar-{{ class }}" role="progressbar" aria-valuenow="{{ sizeInMo }}" aria-valuemin="0" aria-valuemax="{{ maxSizeNumber }}" style="width: {{ percent }}%">
+                <span class="text-center">{{ percent }}%</span>
+            </div>
         </div>
-    </div>
+    {% endif %}
 {% endif %}

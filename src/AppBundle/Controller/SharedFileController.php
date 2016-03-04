@@ -12,11 +12,14 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Finder\Finder;
 
+/**
+ * @Route("/shared_files")
+ */
 class SharedFileController extends Controller
 {
     const DIRECTORY_NAME = "/../web/shared_files";
-    const DIRECTORY_MAX_SIZE_NUMBER = 5000;
-    const DIRECTORY_MAX_SIZE_TEXT = '5 Go';
+    const DIRECTORY_MAX_SIZE_NUMBER = 500;
+    const DIRECTORY_MAX_SIZE_TEXT = '500 Mo';
 
     /**
      * @Route("/create", name="admin_shared_file_create")
@@ -32,6 +35,7 @@ class SharedFileController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             $sharedFile->setFrom($this->getUser()->getEmail());
+            $sharedFile->setToken($this->get('fos_user.util.token_generator')->generateToken());
 
             $em->persist($sharedFile);
             $em->flush();

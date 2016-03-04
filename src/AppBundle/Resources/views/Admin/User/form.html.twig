@@ -1,6 +1,9 @@
 <form class="form-horizontal" method="POST" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
+    {% if form_errors(form) %}
+        <div class="alert alert-danger">{{ form_errors(form) }}</div>
+    {% endif %}
 
+    {{ form_rest(form) }}
     <hr>
 
     <div class="text-center">

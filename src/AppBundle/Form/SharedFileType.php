@@ -59,6 +59,6 @@ class SharedFileType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_post';
+        return 'appbundle_sharedfile';
     }
 }
