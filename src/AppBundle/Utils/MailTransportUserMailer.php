@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nathanpage
- * Date: 02/09/2015
- * Time: 19:41
- */
 
 namespace AppBundle\Utils;
 
@@ -63,22 +57,6 @@ class MailTransportUserMailer implements MailerInterface
         ));
 
         $this->sendEmailMessage($rendered, $subject, $this->parameters['from_email']['resetting'], $user->getEmail());
-    }
-
-    /**
-     * @param string $renderedTemplate
-     * @param string $fromEmail
-     * @param string $toEmail
-     */
-    protected function sendEmailMessage($renderedTemplate, $subject, $fromEmail, $toEmail)
-    {
-        $message = \Swift_Message::newInstance()
-            ->setSubject($subject)
-            ->setFrom($fromEmail)
-            ->setTo($toEmail)
-            ->setBody($renderedTemplate, 'text/html', 'utf-8');
-
-        $this->mailer->send($message);
     }
 
     private function translate($stringId, $username, $url)

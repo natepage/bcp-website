@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\SharedFile;
+use AppBundle\Events\SubmittedSharedFileEvent;
 use AppBundle\Form\SharedFileType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -11,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Finder\Finder;
+use AppBundle\Events\BCPEvents;
 
 /**
  * @Route("/shared_files")
@@ -29,7 +31,6 @@ class SharedFileController extends Controller
     {
         $sharedFile = new SharedFile();
         $form = $this->createForm(new SharedFileType(), $sharedFile);
-        $from = $this->getUser()->getEmail();
 
         if($form->handleRequest($request)->isValid()){
             $em = $this->getDoctrine()->getManager();
@@ -42,6 +43,11 @@ class SharedFileController extends Controller
 
             $flash = sprintf("Le fichier partagé \"%s\"a bien été créé.", $sharedFile->getTitle());
             $request->getSession()->getFlashBag()->add('success', $flash);
+
+            if($sharedFile->getSubmitted()){
+                $dispatcher = $this->get('event_dispatcher');
+                $dispatcher->dispatch(BCPEvents::SUBMITTED_EVENT, new SubmittedSharedFileEvent($sharedFile, $this->getUser()));
+            }
 
             return $this->redirect($this->generateUrl('admin_entity_list', array('entity' => 'sharedFile')));
         }
@@ -74,6 +80,11 @@ class SharedFileController extends Controller
 
             $flash = sprintf("Le fichier partagé \"%s\"a bien été modifié.", $sharedFile->getTitle());
             $request->getSession()->getFlashBag()->add('success', $flash);
+
+            if($sharedFile->getSubmitted()){
+                $dispatcher = $this->get('event_dispatcher');
+                $dispatcher->dispatch(BCPEvents::SUBMITTED_EVENT, new SubmittedSharedFileEvent($sharedFile, $this->getUser()));
+            }
 
             return $this->redirect($this->generateUrl('admin_entity_list', array('entity' => 'sharedFile')));
         }

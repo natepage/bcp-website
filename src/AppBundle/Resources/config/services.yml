@@ -11,11 +11,11 @@ services:
 
     bcp.newsletter:
         class: AppBundle\Utils\NewsletterManager
-        arguments: [@doctrine.orm.entity_manager, @templating, %newsletter_from%]
+        arguments: ["@doctrine.orm.entity_manager", "@templating", %newsletter_from%]
 
     bcp.twig_site_pages:
         class: AppBundle\Utils\TwigSitePagesExtension
-        arguments: [@doctrine.orm.entity_manager, @security.authorization_checker, @security.token_storage]
+        arguments: ["@doctrine.orm.entity_manager", "@security.authorization_checker", "@security.token_storage"]
         tags:
             - { name: twig.extension }
 
@@ -44,3 +44,12 @@ services:
             - "@templating"
         tags:
             - { name: kernel.event_listener, event: kernel.response, method: handleCookieConsent }
+
+    bcp.submitted_sharedfile_suscriber:
+        class: AppBundle\EventListeners\SharedFileListener
+        arguments:
+            - "@router"
+            - "@templating"
+            - %mailer_user%
+        tags:
+            - { name: kernel.event_subscriber }

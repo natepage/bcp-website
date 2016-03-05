@@ -4,3 +4,29 @@
     <h3 class="page-header bcp-page-header">Création d'un fichier partagé</h3>
     {% include '@App/Admin/SharedFile/form.html.twig' %}
 {% endblock admin_content %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        function submitSharedFileForm()
+        {
+            var $form = $('#bcp-form-shared-file');
+            var $modal = '<div class="modal fade" tabindex="-1" role="dialog">' +
+                         '<div class="modal-dialog">' +
+                         '<div class="modal-content">' +
+                         '<div class="modal-header">' +
+                         '<h4 class="modal-title">Chargement du fichier en cours...</h4>' +
+                         '</div>' +
+                         '<div class="modal-body text-center">' +
+                         '<p><i class="fa fa-5x fa-spin fa-spinner"></i></p>' +
+                         '</div>' +
+                         '</div>' +
+                         '</div>' +
+                         '</div>';
+
+            $($modal).modal({backdrop: 'static'});
+            $form.submit();
+        }
+    </script>
+{% endblock %}

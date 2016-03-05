@@ -47,7 +47,7 @@
                     <a href="{{ path('admin_entity_see', {'entity': 'sharedFile', 'id': sharedFile.id}) }}" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="Visualiser">
                         <i class="fa fa-eye"></i>
                     </a>
-                    {% if is_granted('ROLE_ADMIN') or (is_granted('ROLE_SHARED_FILE_UPDATE') and sharedFile.isOwn(app.user.email)) %}
+                    {% if (is_granted('ROLE_ADMIN') or (is_granted('ROLE_SHARED_FILE_UPDATE') and sharedFile.isOwn(app.user.email))) and not sharedFile.submitted %}
                         <a href="{{ path('admin_shared_file_update', {'id': sharedFile.id}) }}" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" title="Modifier">
                             <i class="fa fa-pencil"></i>
                         </a>

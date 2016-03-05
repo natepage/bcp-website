@@ -203,6 +203,14 @@ class DefaultController extends Controller
         return $response;
     }
 
+    /**
+     * @Route("/shared_file/get/{token}", name="front_sharedfile_get")
+     */
+    public function getSharedFileAction()
+    {
+
+    }
+
     private function getDynamicArray($array) {
         $retour = array();
 

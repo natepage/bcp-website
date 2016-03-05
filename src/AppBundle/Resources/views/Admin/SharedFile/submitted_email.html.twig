@@ -1,0 +1,10 @@
+{% extends '@App/Utils/email_structure.html.twig' %}
+
+{% block email_body %}
+    <div style="width: 50%; margin: auto;">
+        <p style="color: #FFF;">Bonjour,</p>
+        <p style="color: #FFF;">{{ userFrom.username }} vous a partagé un fichier.</p>
+        <p style="color: #FFF;">Vous pouvez le récupérer en cliquant sur le lien suivant : <a href="{{ fileLink }}">{{ sharedFile.file.alt }}</a></p>
+        <p style="color: #FFF;">A bientôt sur notre site ou sur les pistes.</p>
+    </div>
+{% endblock email_body %}
