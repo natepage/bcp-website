@@ -1,0 +1,13 @@
+{% extends ':default:index.html.twig' %}
+{% set archivePath = app.request.baseUrl ~ '/../../oldsite/' %}
+
+{% block content %}
+    <div class="row">
+        <div class="alert alert-warning">
+            <p>Le contenu de cette page n'est plus maintenu, il se peut donc que certains liens ne fonctionnent plus.
+            Nous nous excusons pour la gène occasionnée.</p>
+        </div>
+
+        {% block archive_content %}{% endblock archive_content %}
+    </div>
+{% endblock content %}

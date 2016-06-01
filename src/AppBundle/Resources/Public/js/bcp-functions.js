@@ -55,6 +55,6 @@ $('.bcp-form-post-pdf-add').click(function(){
     return false;
 });
 
-function pdfRemove(toggle){
+function pdfRemove(toggle) {
     $(toggle).parent().remove();
 }

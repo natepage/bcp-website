@@ -203,6 +203,20 @@ class DefaultController extends Controller
         return $response;
     }
 
+    /**
+     * @Route("/archives/archive_bcp_{years}", name="archives")
+     */
+    public function archivesAction($years)
+    {
+        $template = 'default/archives/bcp_' . $years . '.html.twig';
+
+        if(!$this->get('templating')->exists($template)){
+            throw $this->createNotFoundException();
+        }
+
+        return $this->render($template);
+    }
+
     private function getDynamicArray($array) {
         $retour = array();
 

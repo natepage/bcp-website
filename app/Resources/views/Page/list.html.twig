@@ -12,3 +12,29 @@
         <h4 class="list-group-item-heading">Gallery</h4>
     </a><!-- /.list-group-item -->
 </div><!-- /.list-group -->
+
+<div class="panel panel-default panel-hideable" {% if large %}style="width: 300px;"{% endif %}>
+    <div class="panel-heading">Archives</div>
+    <div class="panel-body">
+        <div class="list-group bcp-nm">
+            <a href="{{ path('archives', {'years': '10_11'}) }}" class="list-group-item">
+                <h4 class="list-group-item-heading">2010 - 2011</h4>
+            </a>
+            <a href="{{ path('archives', {'years': '09_10'}) }}" class="list-group-item">
+                <h4 class="list-group-item-heading">2009 - 2010</h4>
+            </a>
+            <a href="{{ path('archives', {'years': '08_09'}) }}" class="list-group-item">
+                <h4 class="list-group-item-heading">2008 - 2009</h4>
+            </a>
+            <a href="{{ path('archives', {'years': '07_08'}) }}" class="list-group-item">
+                <h4 class="list-group-item-heading">2007 - 2008</h4>
+            </a>
+            <a href="{{ path('archives', {'years': '06_07'}) }}" class="list-group-item">
+                <h4 class="list-group-item-heading">2006 - 2007</h4>
+            </a>
+            <a href="{{ path('archives', {'years': '05_06'}) }}" class="list-group-item">
+                <h4 class="list-group-item-heading">2005 - 2006</h4>
+            </a>
+        </div><!-- /.list-group -->
+    </div><!-- /.panel-body -->
+</div><!-- /.panel panel-default -->

@@ -10,6 +10,7 @@
 /vendor/
 /web/bundles/
 /.idea/
+/oldsite/
 
 # OS generated files #
 ######################
