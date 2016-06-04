@@ -1,0 +1,13 @@
+.ais-pagination--item {
+    padding: 0;
+}
+
+.ais-stats, .ais-stats--body {
+    display: inline;
+    font-size: 13px;
+}
+
+em {
+    background-color: #df691a;
+    font-style: normal;
+}

@@ -37,7 +37,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/article/{slug}", name="front_article_view")
+     * @Route("/article/{slug}", options={"expose"=true}, name="front_article_view")
      */
     public function postViewAction(Request $request, $slug)
     {
@@ -215,6 +215,14 @@ class DefaultController extends Controller
         }
 
         return $this->render($template);
+    }
+
+    /**
+     * @Route("/recherche", name="recherche")
+     */
+    public function searchAction()
+    {
+        return $this->render(':Page:search.html.twig');
     }
 
     private function getDynamicArray($array) {

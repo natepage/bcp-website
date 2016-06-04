@@ -1,0 +1,61 @@
+{% extends ':default:index.html.twig' %}
+
+{% set url = url('front_page_view', {'slug': 'recherche'}) %}
+{% set pageTitle = 'Recherche' %}
+
+{% block title %}
+    {{ parent() }} | {{ pageTitle }}
+{% endblock title %}
+
+{% block meta_og %}
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:title" content="{{ siteTitle }} | {{ pageTitle }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ url }}" />
+    <meta property="og:image" content="{{ asset('bundles/app/img/logo_bcp.jpg') }}" />
+{% endblock meta_og %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/app/css/search.css') }}">
+{% endblock stylesheets %}
+
+{% block content %}
+    <h1 class="text-danger">
+        <div class="row">
+            <div class="col-md-4">
+                {{ pageTitle }}
+                <small id="stats-container"></small>
+            </div>
+            <div class="col-md-6 col-md-offset-2">
+                <input type="text" id="search-box" class="form-control">
+            </div>
+        </div><!-- /.row -->
+    </h1>
+
+    <div class="row">
+        <div id="pagination-container" class="col-md-12 col-sm-12 text-right bcp-mb"></div>
+        <div id="hits-container" class="col-md-12 col-sm-12 list-group"></div>
+    </div><!-- /.row -->
+
+    <hr>
+    <div class="text-left">
+        <blockquote>
+            <small class="help-block">Vous avez aimé cette page ? Partagez la !</small>
+            <a href="http://www.facebook.com/sharer/sharer.php?u={{ url }}&title={{ pageTitle }}" class="btn btn-default bcp-social-share-link" title="Facebook"><i class="fa fa-facebook"></i></a>
+            <a href="http://twitter.com/intent/tweet?status={{ pageTitle }}+{{ url }}" class="btn btn-default bcp-social-share-link" title="Twitter"><i class="fa fa-twitter"></i></a>
+            <a href="https://plus.google.com/share?url={{ url }}" class="btn btn-default bcp-social-share-link" title="Google+"><i class="fa fa-google-plus"></i></a>
+            <a href="mailto:?subject={{ pageTitle }}&body={{ url }}" class="btn btn-default bcp-social-share-link" title="Email"><i class="fa fa-send"></i></a>
+        </blockquote>
+    </div><!-- /.text-left -->
+{% endblock content %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/app/js/bcp-functions.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.js"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script src="{{ asset('bundles/app/js/search.js') }}"></script>
+{% endblock javascripts %}

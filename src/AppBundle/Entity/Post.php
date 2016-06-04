@@ -5,12 +5,18 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Algolia\AlgoliaSearchBundle\Mapping\Annotation as Algolia;
 
 /**
  * Post
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\PostRepository")
+ * @Algolia\Index(
+ *      attributesToIndex = {"title", "slug", "description", "created"},
+ *      customRanking = {"desc(views)"},
+ *      perEnvironment = false
+ * )
  */
 class Post
 {
@@ -27,6 +33,7 @@ class Post
      * @var \DateTime
      *
      * @ORM\Column(name="created", type="datetime")
+     * @Algolia\Attribute
      */
     private $created;
 
@@ -63,6 +70,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Algolia\Attribute
      */
     private $title;
 
@@ -70,6 +78,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="slug", type="string", length=255)
+     * @Algolia\Attribute
      */
     private $slug;
 
@@ -77,6 +86,7 @@ class Post
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     * @Algolia\Attribute
      */
     private $description;
 
@@ -240,7 +250,8 @@ class Post
     /**
      * Get published
      *
-     * @return boolean 
+     * @return boolean
+     * @Algolia\IndexIf
      */
     public function getPublished()
     {

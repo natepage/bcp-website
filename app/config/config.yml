@@ -134,3 +134,8 @@ liip_imagine:
             quality: 100
             filters:
                 relative_resize: { heighten: 400 }
+
+# Algolia Search Configuration
+algolia:
+    application_id: %algolia_app_id%
+    api_key: %algolia_api_key%
