@@ -12,7 +12,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class TwigSitePagesExtension extends \Twig_Extension
+class TwigSitePagesExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface
 {
     private $om;
     private $ac;
