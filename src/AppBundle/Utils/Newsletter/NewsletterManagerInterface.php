@@ -10,7 +10,7 @@ interface NewsletterManagerInterface
      * Share post's informations with all suscribers.
      *
      * @param Post $post
-     * @return \DateTime
+     * @return \DateTime|null
      */
     public function share(Post $post);
 }
