@@ -1,0 +1,9 @@
+imports:
+    - { resource: services.yml }
+
+services:
+    bcp.contact_provider:
+        class: AppBundle\Utils\Newsletter\DevContactProvider
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - 1

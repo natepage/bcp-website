@@ -1,6 +1,3 @@
-parameters:
-#    app.example.class: AppBundle\Example
-
 services:
     bcp.usertype:
         class: AppBundle\Form\UserType
@@ -9,9 +6,17 @@ services:
     bcp.external_url_generator:
         class: AppBundle\Utils\ExternalUrlGenerator
 
+    bcp.contact_provider:
+        class: AppBundle\Utils\Newsletter\ContactProvider
+        arguments:
+            - "@doctrine.orm.entity_manager"
+
     bcp.newsletter:
-        class: AppBundle\Utils\NewsletterManager
-        arguments: [@doctrine.orm.entity_manager, @templating, %newsletter_from%]
+        class: AppBundle\Utils\Newsletter\NewsletterManager
+        arguments:
+            - "@bcp.contact_provider"
+            - "@templating"
+            - %newsletter_from%
 
     bcp.twig_site_pages:
         class: AppBundle\Utils\TwigSitePagesExtension

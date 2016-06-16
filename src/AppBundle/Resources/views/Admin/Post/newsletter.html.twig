@@ -2,7 +2,7 @@
 
 {% block email_body %}
     <div style="width: 50%; margin: auto;">
-        <p style="color: #FFF;">Bonjour {% if user is defined %}{{ user.username|capitalize }}{% endif %},</p>
+        <p style="color: #FFF;">Bonjour{% if contact.username != '' %} {{ contact.username|capitalize }}{% endif %},</p>
         <p style="color: #FFF;">L'équipe du BCP Poitevin a le plaisir de vous annoncer qu'un nouvel article a été publié sur son site.</p>
         <div style="width: 100%; border: 1px solid #df691a; border-bottom-width: 5px; background-color: #4e5d6c; cursor: pointer;">
             <a href="{{ url('front_article_view', {'slug': post.slug}) }}" style="text-decoration: none;">
@@ -16,12 +16,12 @@
         <p  style="color: #FFF;">A bientôt sur notre site ou sur les pistes.</p>
     </div>
 
-    {% if newsletter is defined %}
+    {% if contact.unSubscribable and contact.token != '' %}
         <div style="width: 50%; margin: auto; margin-top: 50px;">
             <p  style="color: #FFF;">
                 Si toute fois vous ne désirez plus recevoir les nouveautés du Bowling Club Poitevin,
                 vous pouvez vous désabonner en cliquant sur le lien ci-dessous : <br>
-                <a href="{{ url('front_newsletter_remove', {'token': newsletter.token}) }}">Se désabonner ? C'est par ici !</a>
+                <a href="{{ url('front_newsletter_remove', {'token': contact.token}) }}">Se désabonner ? C'est par ici !</a>
             </p>
         </div>
     {% endif %}
