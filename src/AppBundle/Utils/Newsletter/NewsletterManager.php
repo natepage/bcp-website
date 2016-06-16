@@ -5,7 +5,7 @@ namespace AppBundle\Utils\Newsletter;
 use AppBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 
-class NewsletterManager
+class NewsletterManager implements NewsletterManagerInterface
 {
     /**
      * @var ContactProviderInterface
