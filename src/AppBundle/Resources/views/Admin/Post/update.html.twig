@@ -24,12 +24,6 @@
         </div><!-- /.alert alert-warning -->
     {% endif %}
 
-    {% if app.user.id == 1 %}
-        <div class="alert alert-info">
-            Résolution de bug -{{ app.user.username }}-
-        </div><!-- /.alert alert-info -->
-    {% endif %}
-
     <h3 class="page-header bcp-page-header">Modification d'un article</h3>
     {% include '@App/Admin/Post/form.html.twig' %}
 {% endblock admin_content %}

@@ -32,6 +32,11 @@ class NewsletterManager implements NewsletterManagerInterface
         $this->from = $from;
     }
 
+    public function setIsSuperAdmin($isSuperAdmin)
+    {
+        $this->contactProvider->setIsSuperAdmin($isSuperAdmin);
+    }
+
     public function share(Post $post)
     {
         if(!$post->getPublished()){

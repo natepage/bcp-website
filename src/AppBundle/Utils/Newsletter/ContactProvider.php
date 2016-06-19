@@ -11,13 +11,34 @@ class ContactProvider implements ContactProviderInterface
      */
     private $om;
 
+    /**
+     * @var boolean
+     */
+    private $isSuperAdmin;
+
     public function __construct(ObjectManager $om)
     {
         $this->om = $om;
+        $this->isSuperAdmin = false;
+    }
+
+    public function setIsSuperAdmin($isSuperAdmin)
+    {
+        $this->isSuperAdmin = $isSuperAdmin;
     }
 
     public function getContacts()
     {
+        if($this->isSuperAdmin){
+            $user = $this->om->getRepository('AppBundle:User')->find(1);
+
+            $contact = new Contact();
+            $contact->setUsername($user->getUsername())
+                    ->setEmail($user->getEmail());
+
+            return array($contact);
+        }
+
         $contacts = array();
         $emails = array();
 

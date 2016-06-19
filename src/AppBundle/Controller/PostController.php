@@ -140,8 +140,18 @@ class PostController extends Controller
             }
 
             if($form->get('newsletter')->getData() && $post->getPublished()){
-                $sharedNewsletter = $this->get('bcp.newsletter')->share($post);
-                $post->setSharedNewsletter($sharedNewsletter);
+                $newsletterManager = $this->get('bcp.newsletter');
+                $env = $this->getParameter('kernel.environment');
+
+                if($this->getUser()->getId() == 1 && $env == 'prod'){
+                    $newsletterManager->setIsSuperAdmin(true);
+                }
+
+                $sharedNewsletter = $newsletterManager->share($post);
+
+                if($env != 'dev'){
+                    $post->setSharedNewsletter($sharedNewsletter);
+                }
 
                 if(null !== $sharedNewsletter){
                     $newsFlash = 'La newsletter a bien été diffusée.';
