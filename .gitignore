@@ -9,6 +9,9 @@
 /composer.phar
 /vendor/
 /web/bundles/
+/web/media/
+/web/shared_files/
+/web/uploads/
 /.idea/
 /oldsite/
 
