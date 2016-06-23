@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="dashboard.pdf_label">
+                <source>dashboard.pdf_label</source>
+                <target>PDF</target>
+            </trans-unit>
+            <trans-unit id="form.label_file">
+                <source>form.label_file</source>
+                <target>Fichier</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

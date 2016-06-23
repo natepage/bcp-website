@@ -1,0 +1,24 @@
+<script src="{{ asset('bundles/app/assets/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('bundles/admin/js/jquery-adminbundle-consolelogger.js') }}"></script>
+<script src="{{ asset('bundles/admin/js/admin-image-preview.js') }}"></script>
+<script src="{{ asset('bundles/admin/js/admin-pdf-preview.js') }}"></script>
+
+<script type="text/javascript">
+    $('.admin-group-description-toggle').each(function(){
+        var target = $(this).attr('target');
+
+        if(target){
+            target = $(target);
+
+            $(this).click(function(){
+                if(target.is(':visible')){
+                    target.hide();
+                } else {
+                    target.show();
+                }
+            });
+        } else {
+            $(this).hide();
+        }
+    });
+</script>

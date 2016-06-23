@@ -2,14 +2,13 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\User;
+use UserBundle\Entity\User;
 use AppBundle\Form\EmailType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/admin/user")
@@ -48,7 +47,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        if(null === $user = $em->getRepository('AppBundle:User')->findFully($id)){
+        if(null === $user = $em->getRepository('UserBundle:User')->findFully($id)){
             throw $this->createNotFoundException(sprintf("L'utilisateur à l'id %s n'existe pas.", $id));
         }
 
@@ -87,7 +86,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        if(null === $user = $em->getRepository('AppBundle:User')->find($id)){
+        if(null === $user = $em->getRepository('UserBundle:User')->find($id)){
             throw $this->createNotFoundException(sprintf("L'utilisateur à l'id %s n'existe pas.", $id));
         }
 
@@ -118,7 +117,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        if(null === $user = $em->getRepository('AppBundle:User')->find($id)){
+        if(null === $user = $em->getRepository('UserBundle:User')->find($id)){
             throw $this->createNotFoundException(sprintf("L'utilisateur à l'id %s n'existe pas.", $id));
         }
 

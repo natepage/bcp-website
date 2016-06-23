@@ -1,0 +1,14 @@
+services:
+    admin.form_javascripts.block:
+        class: AdminBundle\Block\FormJavascriptsBlock
+        arguments:
+            - admin.form_javascripts.block
+            - "@templating"
+            - "@service_container"
+        tags:
+            - { name: sonata.block }
+
+    admin.edit_form_bottom.listener:
+        class: AdminBundle\Block\Listener\BlockEditFormBottomListener
+        tags:
+            - { name: kernel.event_listener, event: sonata.block.event.sonata.admin.edit.form.bottom, method: onBlock }

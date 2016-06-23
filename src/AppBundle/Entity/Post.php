@@ -38,9 +38,9 @@ class Post
     private $updated;
 
     /**
-     * @var \AppBundle\Entity\User
+     * @var \UserBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="posts")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="posts")
      * @ORM\JoinColumn(nullable=true)
      */
     private $author;
@@ -143,6 +143,14 @@ class Post
         $this->previewImageKey = -1;
         $this->pdfs = new ArrayCollection();
         $this->fbId = null;
+    }
+
+    /**
+     * For sonata's form rendering.
+     */
+    public function __toString()
+    {
+        return $this->title ?: '';
     }
 
     /**
@@ -319,10 +327,10 @@ class Post
     /**
      * Set author
      *
-     * @param \AppBundle\Entity\User $author
+     * @param \UserBundle\Entity\User $author
      * @return Post
      */
-    public function setAuthor(\AppBundle\Entity\User $author = null)
+    public function setAuthor(\UserBundle\Entity\User $author = null)
     {
         $this->author = $author;
 
@@ -337,7 +345,7 @@ class Post
     /**
      * Get author
      *
-     * @return \AppBundle\Entity\User 
+     * @return \UserBundle\Entity\User
      */
     public function getAuthor()
     {

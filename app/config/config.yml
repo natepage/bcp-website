@@ -60,12 +60,6 @@ doctrine:
         password: "%database_password%"
         charset:  UTF8
         path: "%database_path%"
-        # if using pdo_sqlite as your database driver:
-        #   1. add the path in parameters.yml
-        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
-        #   2. Uncomment database_path in parameters.yml.dist
-        #   3. Uncomment next line:
-        #     path:     "%database_path%"
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
@@ -87,12 +81,15 @@ swiftmailer:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: AppBundle\Entity\User
+    user_class: UserBundle\Entity\User
+
     from_email:
         address: "%newsletter_from%"
         sender_name: Bowling Club Poitevin
+
     service:
         mailer: bcp.user_mailer
+
     registration:
         confirmation:
             enabled: true
@@ -134,3 +131,51 @@ liip_imagine:
             quality: 100
             filters:
                 relative_resize: { heighten: 400 }
+
+# Sonata Block Configuration
+sonata_block:
+    default_contexts: [site]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+        sonata.admin.block.stats: ~
+        admin.form_javascripts.block: ~
+
+# Sonata Admin Configuration
+sonata_admin:
+    title: 'Bowling Club Poitevin'
+    title_logo: bundles/app/img/logo_bcp.jpg
+
+    security:
+        handler: sonata.admin.security.handler.role
+
+    dashboard:
+        blocks:
+            - position: top
+              type: sonata.admin.block.stats
+              roles: [ROLE_POST_READER]
+              settings:
+                code: bcp.admin.post
+                icon: fa-newspaper-o
+                text: dashboard.stats.post_text
+                color: bg-yellow
+
+            - position: top
+              type: sonata.admin.block.stats
+              roles: [ROLE_PAGE_READER]
+              settings:
+                code: bcp.admin.page
+                icon: fa-file-text-o
+                text: dashboard.stats.page_text
+                color: bg-green
+
+            - position: left
+              type: sonata.admin.block.admin_list
+
+        groups:
+            content:
+                label: dashboard.group.content
+                label_catalogue: DashboardAdmin
+                items:
+                    - bcp.admin.post
+                    - bcp.admin.page

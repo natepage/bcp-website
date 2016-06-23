@@ -145,7 +145,7 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $newsletterAlreadyExist = $em->getRepository('AppBundle:Newsletter')->findOneBy(array('mail' => $mail));
-        $userMailAlreadyExist = $em->getRepository('AppBundle:User')->findOneBy(array('email' => $mail));
+        $userMailAlreadyExist = $em->getRepository('UserBundle:User')->findOneBy(array('email' => $mail));
 
         if(null !== $newsletterAlreadyExist || null !== $userMailAlreadyExist){
             $request->getSession()->getFlashBag()->add('danger', 'Cette adresse mail a déjà été ajoutée.');

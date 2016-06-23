@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="dashboard.page_label">
+                <source>dashboard.page_label</source>
+                <target>Page</target>
+            </trans-unit>
+            <trans-unit id="dashboard.stats.page_text">
+                <source>dashboard.stats.page_text</source>
+                <target>Pages</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_page_list">
+                <source>breadcrumb.link_page_list</source>
+                <target>Liste des pages</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_page_create">
+                <source>breadcrumb.link_page_create</source>
+                <target>Créer un page</target>
+            </trans-unit>
+            <trans-unit id="filter.label_author_name">
+                <source>filter.label_author_name</source>
+                <target>Auteur</target>
+            </trans-unit>
+            <trans-unit id="filter.label_created">
+                <source>filter.label_created</source>
+                <target>Date de création</target>
+            </trans-unit>
+            <trans-unit id="filter.label_title">
+                <source>filter.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="filter.label_published">
+                <source>filter.label_published</source>
+                <target>Publiée</target>
+            </trans-unit>
+            <trans-unit id="list.label_description">
+                <source>list.label_description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="list.label_created">
+                <source>list.label_created</source>
+                <target>Créée le</target>
+            </trans-unit>
+            <trans-unit id="list.label_title">
+                <source>list.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="list.label_author_name">
+                <source>list.label_author_name</source>
+                <target>Auteur</target>
+            </trans-unit>
+            <trans-unit id="list.label_published">
+                <source>list.label_published</source>
+                <target>Publiée</target>
+            </trans-unit>
+            <trans-unit id="form.label_title">
+                <source>form.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="form.label_description">
+                <source>form.label_description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="form.label_content">
+                <source>form.label_content</source>
+                <target>Contenu</target>
+            </trans-unit>
+            <trans-unit id="form.tab_page">
+                <source>form.tab_page</source>
+                <target>Article</target>
+            </trans-unit>
+            <trans-unit id="form.tab_publish">
+                <source>form.tab_publish</source>
+                <target>Publication</target>
+            </trans-unit>
+            <trans-unit id="form.label_published">
+                <source>form.label_published</source>
+                <target>Publiée</target>
+            </trans-unit>
+            <trans-unit id="form.label_priority">
+                <source>form.label_priority</source>
+                <target>Priorité</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

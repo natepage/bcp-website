@@ -36,9 +36,9 @@ class Page
     private $updated;
 
     /**
-     * @var \AppBundle\Entity\User
+     * @var \UserBundle\Entity\User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="pages")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="pages")
      * @ORM\JoinColumn(nullable=true)
      */
     private $author;
@@ -108,6 +108,14 @@ class Page
         $this->published = false;
         $this->views = 0;
         $this->priority = 0;
+    }
+
+    /**
+     * For sonata's form rendering.
+     */
+    public function __toString()
+    {
+        return $this->title ?: '';
     }
 
     /**
@@ -284,10 +292,10 @@ class Page
     /**
      * Set author
      *
-     * @param \AppBundle\Entity\User $author
+     * @param \UserBundle\Entity\User $author
      * @return Post
      */
-    public function setAuthor(\AppBundle\Entity\User $author = null)
+    public function setAuthor(\UserBundle\Entity\User $author = null)
     {
         $this->author = $author;
 
@@ -302,7 +310,7 @@ class Page
     /**
      * Get author
      *
-     * @return \AppBundle\Entity\User 
+     * @return \UserBundle\Entity\User
      */
     public function getAuthor()
     {

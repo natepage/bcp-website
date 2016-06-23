@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="dashboard.image_label">
+                <source>dashboard.image_label</source>
+                <target>Image</target>
+            </trans-unit>
+            <trans-unit id="form.label_file">
+                <source>form.label_file</source>
+                <target>Fichier</target>
+            </trans-unit>
+            <trans-unit id="form.label_default_preview_image">
+                <source>form.label_default_preview_image</source>
+                <target>Affichée en page d'accueil</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

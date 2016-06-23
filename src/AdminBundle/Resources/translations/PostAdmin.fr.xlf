@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="dashboard.post_label">
+                <source>dashboard.post_label</source>
+                <target>Article</target>
+            </trans-unit>
+            <trans-unit id="dashboard.stats.post_text">
+                <source>dashboard.stats.post_text</source>
+                <target>Articles</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_list">
+                <source>breadcrumb.link_post_list</source>
+                <target>Liste des articles</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_post_create">
+                <source>breadcrumb.link_post_create</source>
+                <target>Créer un article</target>
+            </trans-unit>
+            <trans-unit id="filter.label_author_name">
+                <source>filter.label_author_name</source>
+                <target>Auteur</target>
+            </trans-unit>
+            <trans-unit id="filter.label_created">
+                <source>filter.label_created</source>
+                <target>Date de création</target>
+            </trans-unit>
+            <trans-unit id="filter.label_title">
+                <source>filter.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="filter.label_published">
+                <source>filter.label_published</source>
+                <target>Publié</target>
+            </trans-unit>
+            <trans-unit id="list.label_description">
+                <source>list.label_description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="list.label_created">
+                <source>list.label_created</source>
+                <target>Créé le</target>
+            </trans-unit>
+            <trans-unit id="list.label_title">
+                <source>list.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="list.label_author_name">
+                <source>list.label_author_name</source>
+                <target>Auteur</target>
+            </trans-unit>
+            <trans-unit id="list.label_published">
+                <source>list.label_published</source>
+                <target>Publié</target>
+            </trans-unit>
+            <trans-unit id="form.label_title">
+                <source>form.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="form.label_description">
+                <source>form.label_description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="form.label_content">
+                <source>form.label_content</source>
+                <target>Contenu</target>
+            </trans-unit>
+            <trans-unit id="form.tab_post">
+                <source>form.tab_post</source>
+                <target>Article</target>
+            </trans-unit>
+            <trans-unit id="form.tab_publish">
+                <source>form.tab_publish</source>
+                <target>Publication</target>
+            </trans-unit>
+            <trans-unit id="form.label_published">
+                <source>form.label_published</source>
+                <target>Publié</target>
+            </trans-unit>
+            <trans-unit id="form.tab_images">
+                <source>form.tab_images</source>
+                <target>
+                    <![CDATA[
+                        Images <i class="fa fa-question-circle admin-group-description-toggle" title="Description" target="#admin-group-images-description"></i>
+                    ]]>
+                </target>
+            </trans-unit>
+            <trans-unit id="form.tab_description_images">
+                <source>form.tab_description_images</source>
+                <target>
+                    <![CDATA[
+                        <div id="admin-group-images-description" class="admin-group-description help-block">
+                            <dl>
+                                <dt>Ajout</dt>
+                                <dd>Ajoutez le nombre d'éléments souhaité avant de définir les fichiers associés.</dd>
+                                <dt>Suppression</dt>
+                                <dd>L'ajout et la suppression ne peuvent être effectués en même temps.</dd>
+                            </dl>
+                        </div>
+                    ]]>
+                </target>
+            </trans-unit>
+            <trans-unit id="form.tab_pdfs">
+                <source>form.tab_pdfs</source>
+                <target>PDFs</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

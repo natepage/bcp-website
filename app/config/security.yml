@@ -23,30 +23,101 @@ security:
         ROLE_NEWSLETTER_SEE:    ROLE_INTERFACE_ADMIN
         ROLE_NEWSLETTER_REMOVE: ROLE_NEWSLETTER_SEE
         ROLE_NEWSLETTER_ALL:   [ROLE_NEWSLETTER_SEE, ROLE_NEWSLETTER_REMOVE]
-        ROLE_ADMIN:            [ROLE_USER_ALL, ROLE_POST_ALL, ROLE_PAGE_ALL, ROLE_NEWSLETTER_REMOVE]
-        ROLE_SUPER_ADMIN:       ROLE_ADMIN
+
+        #ROLES SONATA ADMIN
+        ROLE_POST_READER:
+            - ROLE_BCP_ADMIN_POST_LIST
+            - ROLE_BCP_ADMIN_POST_VIEW
+            - ROLE_INTERFACE_ADMIN
+        ROLE_POST_EDITOR:
+            - ROLE_POST_READER
+            - ROLE_BCP_ADMIN_POST_CREATE
+            - ROLE_BCP_ADMIN_POST_EDIT
+            - ROLE_IMAGE_ADMIN
+            - ROLE_PDF_ADMIN
+        ROLE_POST_ADMIN:
+            - ROLE_POST_EDITOR
+            - ROLE_BCP_ADMIN_POST_DELETE
+            - ROLE_BCP_ADMIN_POST_EXPORT
+
+        ROLE_PAGE_READER:
+            - ROLE_BCP_ADMIN_PAGE_LIST
+            - ROLE_BCP_ADMIN_PAGE_VIEW
+            - ROLE_INTERFACE_ADMIN
+        ROLE_PAGE_EDITOR:
+            - ROLE_PAGE_READER
+            - ROLE_BCP_ADMIN_PAGE_CREATE
+            - ROLE_BCP_ADMIN_PAGE_EDIT
+        ROLE_PAGE_ADMIN:
+            - ROLE_PAGE_EDITOR
+            - ROLE_BCP_ADMIN_PAGE_DELETE
+            - ROLE_BCP_ADMIN_PAGE_EXPORT
+
+        ROLE_IMAGE_READER:
+            - ROLE_BCP_ADMIN_IMAGE_LIST
+            - ROLE_BCP_ADMIN_IMAGE_VIEW
+            - ROLE_INTERFACE_ADMIN
+        ROLE_IMAGE_EDITOR:
+            - ROLE_IMAGE_READER
+            - ROLE_BCP_ADMIN_IMAGE_CREATE
+            - ROLE_BCP_ADMIN_IMAGE_EDIT
+        ROLE_IMAGE_ADMIN:
+            - ROLE_IMAGE_EDITOR
+            - ROLE_BCP_ADMIN_IMAGE_DELETE
+            - ROLE_BCP_ADMIN_IMAGE_EXPORT
+
+        ROLE_PDF_READER:
+            - ROLE_BCP_ADMIN_PDF_LIST
+            - ROLE_BCP_ADMIN_PDF_VIEW
+            - ROLE_INTERFACE_ADMIN
+        ROLE_PDF_EDITOR:
+            - ROLE_PDF_READER
+            - ROLE_BCP_ADMIN_PDF_CREATE
+            - ROLE_BCP_ADMIN_PDF_EDIT
+        ROLE_PDF_ADMIN:
+            - ROLE_PDF_EDITOR
+            - ROLE_BCP_ADMIN_PDF_DELETE
+            - ROLE_BCP_ADMIN_PDF_EXPORT
+
+        ROLE_ADMIN:
+            - ROLE_USER_ALL
+            - ROLE_POST_ALL
+            - ROLE_PAGE_ALL
+            - ROLE_NEWSLETTER_REMOVE
+            - ROLE_POST_ADMIN
+            - ROLE_PAGE_ADMIN
+
+        ROLE_SUPER_ADMIN:      [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
         fos_userbundle:
             id: fos_user.user_provider.username
 
     firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
         main:
-            pattern: ^/
+            pattern:           ^/
             form_login:
-                provider: fos_userbundle
-                csrf_provider: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
-            logout:       true
-            anonymous:    true
+                provider:      fos_userbundle
+                csrf_provider: security.csrf.token_manager
+            logout:            true
+            anonymous:         true
             remember_me:
-                key:      "%secret%"
-                lifetime: 31536000 # 365 jours en secondes
-                path:     /
-                domain:   ~
+                key:           "%secret%"
+                lifetime:      31536000 # 365 jours en secondes
+                path:          /
+                domain:        ~
 
     access_control:
         - { path: ^/uploads/img/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_INTERFACE_ADMIN }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/sonata_admin/, role: ROLE_INTERFACE_ADMIN }
+
+    access_decision_manager:
+        strategy: unanimous

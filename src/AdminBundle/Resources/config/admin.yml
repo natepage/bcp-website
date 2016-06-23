@@ -1,0 +1,48 @@
+services:
+    bcp.admin.post:
+        class: AdminBundle\Admin\PostAdmin
+        arguments:
+            - ~
+            - AppBundle\Entity\Post
+            - AdminBundle:Post
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              label: dashboard.post_label
+              label_translator_strategy: sonata.admin.label.strategy.underscore
+
+    bcp.admin.image:
+        class: AdminBundle\Admin\ImageAdmin
+        arguments:
+            - ~
+            - AppBundle\Entity\Image
+            - ~
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              label: dashboard.image_label
+              label_translator_strategy: sonata.admin.label.strategy.underscore
+
+    bcp.admin.pdf:
+        class: AdminBundle\Admin\PdfAdmin
+        arguments:
+            - ~
+            - AppBundle\Entity\Pdf
+            - ~
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              label: dashboard.pdf_label
+              label_translator_strategy: sonata.admin.label.strategy.underscore
+
+    bcp.admin.page:
+        class: AdminBundle\Admin\PageAdmin
+        arguments:
+            - ~
+            - AppBundle\Entity\Page
+            - AdminBundle:Page
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              label: dashboard.page_label
+              label_translator_strategy: sonata.admin.label.strategy.underscore
