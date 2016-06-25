@@ -1,0 +1,19 @@
+{% extends '@SonataAdmin/CRUD/base_show_field.html.twig' %}
+
+{% block field %}
+    <ul style="list-style: none">
+        {% for element in value %}
+            <li>
+                <a href="#" onclick="opendPdf('{{ asset(element.webPath) }}'); return false;">
+                    {{ element.alt }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <script type="text/javascript">
+        function opendPdf(_path){
+            window.open(_path, '_blanck', 'toolbar=no,scrollbars=yes,resizable=yes,top=150,left=450,width=800,height=800');
+        }
+    </script>
+{% endblock field %}

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nathanpage
- * Date: 22/06/2016
- * Time: 09:53
- */
 
 namespace AdminBundle\Admin;
 
@@ -74,9 +68,19 @@ class PageAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('created')
-            ->add('title')
-            ->add('authorName')
+            ->with('tab_page', array(
+                'class' => 'col-md-8'
+            ))
+                ->add('title')
+                ->add('description')
+                ->add('content', null, array('safe' => true))
+            ->end()
+            ->with('tab_publish', array(
+                'class' => 'col-md-4'
+            ))
+                ->add('priority')
+                ->add('published')
+            ->end()
         ;
     }
 

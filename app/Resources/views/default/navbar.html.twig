@@ -39,6 +39,9 @@
                                     {% if is_granted('ROLE_INTERFACE_ADMIN') %}
                                         <li><a href="{{ path('admin_homepage') }}"><i class="fa fa-cogs"></i> Administration</a></li>
                                     {% endif %}
+                                    {% if is_granted('ROLE_INTERFACE_ADMIN') %}
+                                        <li><a href="{{ path('sonata_admin_dashboard') }}"><i class="fa fa-cogs"></i> Sonata Administration</a></li>
+                                    {% endif %}
                                     <li class="divider"></li>
                                     <li><a href="{{ path('fos_user_security_logout') }}"><i class="fa fa-power-off"></i> Déconnexion</a></li>
                                 </ul><!-- /.dropdown-menu -->

@@ -42,6 +42,14 @@ class Pdf
   private $tempFilename;
 
   /**
+   * For sonata's form rendering.
+   */
+  public function __toString()
+  {
+    return $this->getAlt() ?: '';
+  }
+
+  /**
    * @ORM\PrePersist()
    * @ORM\PreUpdate()
    */

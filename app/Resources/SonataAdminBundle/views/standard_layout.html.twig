@@ -36,6 +36,7 @@ file that was distributed with this source code.
             {% endfor %}
 
             <link rel="stylesheet" href="{{ asset('bundles/admin/css/bcp-admin.css') }}">
+            <link rel="stylesheet" href="{{ asset('bundles/user/css/user-bundle-styles.css') }}">
         {% endblock %}
 
         {% block javascripts %}
@@ -166,6 +167,11 @@ file that was distributed with this source code.
                         {% block sonata_top_nav_menu %}
                             <div class="navbar-custom-menu">
                                 <ul class="nav navbar-nav">
+                                    <li>
+                                        <a href="{{ path('homepage') }}" data-toggle="tooltip" data-placement="bottom" title="{{ 'dashboard.link.front_end'|trans({}, 'DashboardAdmin') }}">
+                                            <i class="fa fa-desktop"></i>
+                                        </a>
+                                    </li>
                                     <li class="dropdown">
                                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                             <i class="fa fa-plus-square fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -194,7 +200,7 @@ file that was distributed with this source code.
                     <section class="sidebar">
                         {% block sonata_side_nav %}
                             {% block sonata_sidebar_search %}
-                                {% if app.user and is_granted('ROLE_SONATA_ADMIN') %}
+                                {% if app.user and is_granted('ROLE_INTERFACE_ADMIN') %}
                                     <form action="{{ path('sonata_admin_search') }}" method="GET" class="sidebar-form" role="search">
                                         <div class="input-group custom-search-form">
                                             <input type="text" name="q" value="{{ app.request.get('q') }}" class="form-control" placeholder="{{ 'search_placeholder'|trans({}, 'SonataAdminBundle') }}">
@@ -210,7 +216,7 @@ file that was distributed with this source code.
 
                             {% block side_bar_before_nav %} {% endblock %}
                             {% block side_bar_nav %}
-                                {% if app.user and is_granted('ROLE_SONATA_ADMIN') %}
+                                {% if app.user and is_granted('ROLE_INTERFACE_ADMIN') %}
                                     {{ knp_menu_render('sonata_admin_sidebar', {template: sonata_admin.adminPool.getTemplate('knp_menu_template')}) }}
                                 {% endif %}
                             {% endblock side_bar_nav %}
@@ -337,5 +343,10 @@ file that was distributed with this source code.
         {% endblock %}
     {% endif %}
 
+    <script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
     </body>
 </html>

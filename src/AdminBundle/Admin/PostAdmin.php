@@ -33,8 +33,8 @@ class PostAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('form.tab_post', array(
-                'class' => 'col-md-10'
+            ->with('tab_post', array(
+                'class' => 'col-md-8'
             ))
                 ->add('title', 'text')
                 ->add('description', 'text')
@@ -45,14 +45,14 @@ class PostAdmin extends AbstractAdmin
                     'required' => false
                 ))
             ->end()
-            ->with('form.tab_publish', array(
-                'class' => 'col-md-2'
+            ->with('tab_publish', array(
+                'class' => 'col-md-4'
             ))
                 ->add('published', 'checkbox', array(
                     'required' => false
                 ))
             ->end()
-            ->with('form.tab_images', array(
+            ->with('tab_images', array(
                 'class' => 'col-md-6',
                 'description' => 'form.tab_description_images'
             ))
@@ -65,7 +65,7 @@ class PostAdmin extends AbstractAdmin
                     'inline' => 'table'
                 ))
             ->end()
-            ->with('form.tab_pdfs', array(
+            ->with('tab_pdfs', array(
                 'class' => 'col-md-6'
             ))
                 ->add('pdfs', 'sonata_type_collection', array(
@@ -104,9 +104,36 @@ class PostAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('created')
-            ->add('title')
-            ->add('authorName')
+            ->with('tab_post', array(
+                'class' => 'col-md-8'
+            ))
+                ->add('title')
+                ->add('description')
+                ->add('content', null, array('safe' => true))
+            ->end()
+            ->with('tab_publish', array(
+                'class' => 'col-md-4'
+            ))
+                ->add('created', 'datetime', array('format' => 'd/m/Y, H:i'))
+                ->add('authorName')
+                ->add('published')
+            ->end()
+            ->with('show.tab_images', array(
+                'class' => 'col-md-6'
+            ))
+                ->add('images', null, array(
+                    'display_label' => false,
+                    'template' => 'AdminBundle:CRUD/Show:field_images.html.twig'
+                ))
+            ->end()
+            ->with('tab_pdfs', array(
+                'class' => 'col-md-6'
+            ))
+                ->add('pdfs', null, array(
+                    'display_label' => false,
+                    'template' => 'AdminBundle:CRUD/Show:field_pdfs.html.twig'
+                ))
+            ->end()
         ;
     }
 

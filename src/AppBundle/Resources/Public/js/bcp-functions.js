@@ -6,6 +6,9 @@ $('.bcp-social-share-link').click(function(){
     return false;
 });
 
+function opendPdf(_path){
+    window.open(_path, '_blanck', 'toolbar=no,scrollbars=yes,resizable=yes,top=150,left=450,width=800,height=800');
+}
 /**
  * Gestion du formulaire des posts
  */

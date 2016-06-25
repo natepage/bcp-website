@@ -1,0 +1,18 @@
+services:
+    user.security.roles_list_builder:
+        class: UserBundle\Security\RolesListBuilder
+        arguments:
+            - %security.role_hierarchy.roles%
+            - %bcp_user.excluded_admin_roles%
+            - "@user.security.roles_transformer"
+
+    user.security.roles_transformer:
+        class: UserBundle\Security\RolesTransformer
+
+    user.twig_extension:
+        class: UserBundle\Twig\UserExtension
+        arguments:
+            - "@user.security.roles_transformer"
+        tags:
+            - { name: twig.extension }
+        public: false

@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="header.post">
+                <source>header.post</source>
+                <target>Articles</target>
+            </trans-unit>
+            <trans-unit id="render.post_reader">
+                <source>render.post_reader</source>
+                <target>[Articles] Visualisation</target>
+            </trans-unit>
+            <trans-unit id="render.post_editor">
+                <source>render.post_editor</source>
+                <target>[Articles] Création et modification (+ visualisation)</target>
+            </trans-unit>
+            <trans-unit id="render.post_admin">
+                <source>render.post_admin</source>
+                <target>[Articles] Suppression et export (+ édition)</target>
+            </trans-unit>
+            <trans-unit id="header.page">
+                <source>header.page</source>
+                <target>Pages</target>
+            </trans-unit>
+            <trans-unit id="render.page_reader">
+                <source>render.page_reader</source>
+                <target>[Pages] Visualisation</target>
+            </trans-unit>
+            <trans-unit id="render.page_editor">
+                <source>render.page_editor</source>
+                <target>[Pages] Création et modification (+ visualisation)</target>
+            </trans-unit>
+            <trans-unit id="render.page_admin">
+                <source>render.page_admin</source>
+                <target>[Pages] Suppression et export (+ édition)</target>
+            </trans-unit>
+            <trans-unit id="header.user">
+                <source>header.user</source>
+                <target>Utilisateurs</target>
+            </trans-unit>
+            <trans-unit id="render.user_reader">
+                <source>render.user_reader</source>
+                <target>[Utilisateurs] Visualisation</target>
+            </trans-unit>
+            <trans-unit id="render.user_editor">
+                <source>render.user_editor</source>
+                <target>[Utilisateurs] Création et modification (+ visualisation)</target>
+            </trans-unit>
+            <trans-unit id="render.user_admin">
+                <source>render.user_admin</source>
+                <target>[Utilisateurs] Suppression et export (+ édition)</target>
+            </trans-unit>
+            <trans-unit id="header.admin">
+                <source>header.admin</source>
+                <target>Administrateurs</target>
+            </trans-unit>
+            <trans-unit id="render.admin">
+                <source>render.admin</source>
+                <target>[Administrateurs] Bénéficie de toutes les autorisations</target>
+            </trans-unit>
+            <trans-unit id="header.newsletter">
+                <source>header.newsletter</source>
+                <target>Newsletter</target>
+            </trans-unit>
+            <trans-unit id="render.newsletter_reader">
+                <source>render.newsletter_reader</source>
+                <target>[Newsletter] Visualisation</target>
+            </trans-unit>
+            <trans-unit id="render.newsletter_editor">
+                <source>render.newsletter_editor</source>
+                <target>[Newsletter] Création et modification (+ visualisation)</target>
+            </trans-unit>
+            <trans-unit id="render.newsletter_admin">
+                <source>render.newsletter_admin</source>
+                <target>[Newsletter] Suppression et export (+ édition)</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

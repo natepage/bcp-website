@@ -34,7 +34,9 @@
     </div>
     <div class="bcp-post-pdfs-container">
         {% for pdf in post.pdfs %}
-            <a class="btn text-center" target="_blank" href="{{ asset(pdf.webPath) }}"><i class="fa fa-file-pdf-o fa-2x"></i><br>{{ pdf.alt }}</a>
+            <a class="btn text-center" target="_blank" href="#" onclick="opendPdf('{{ asset(pdf.webPath) }}'); return false;">
+                <i class="fa fa-file-pdf-o fa-2x"></i><br>{{ pdf.alt }}
+            </a>
         {% endfor %}
     </div>
     <hr>

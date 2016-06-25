@@ -66,20 +66,20 @@
                 <source>form.label_content</source>
                 <target>Contenu</target>
             </trans-unit>
-            <trans-unit id="form.tab_post">
-                <source>form.tab_post</source>
+            <trans-unit id="tab_post">
+                <source>tab_post</source>
                 <target>Article</target>
             </trans-unit>
-            <trans-unit id="form.tab_publish">
-                <source>form.tab_publish</source>
+            <trans-unit id="tab_publish">
+                <source>tab_publish</source>
                 <target>Publication</target>
             </trans-unit>
             <trans-unit id="form.label_published">
                 <source>form.label_published</source>
                 <target>Publié</target>
             </trans-unit>
-            <trans-unit id="form.tab_images">
-                <source>form.tab_images</source>
+            <trans-unit id="tab_images">
+                <source>tab_images</source>
                 <target>
                     <![CDATA[
                         Images <i class="fa fa-question-circle admin-group-description-toggle" title="Description" target="#admin-group-images-description"></i>
@@ -101,9 +101,37 @@
                     ]]>
                 </target>
             </trans-unit>
-            <trans-unit id="form.tab_pdfs">
-                <source>form.tab_pdfs</source>
+            <trans-unit id="tab_pdfs">
+                <source>tab_pdfs</source>
                 <target>PDFs</target>
+            </trans-unit>
+            <trans-unit id="show.tab_images">
+                <source>show.tab_images</source>
+                <target>Images</target>
+            </trans-unit>
+            <trans-unit id="show.label_title">
+                <source>show.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="show.label_description">
+                <source>show.label_description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="show.label_content">
+                <source>show.label_content</source>
+                <target>Contenu</target>
+            </trans-unit>
+            <trans-unit id="show.label_created">
+                <source>show.label_created</source>
+                <target>Créé le</target>
+            </trans-unit>
+            <trans-unit id="show.label_author_name">
+                <source>show.label_author_name</source>
+                <target>Auteur</target>
+            </trans-unit>
+            <trans-unit id="show.label_published">
+                <source>show.label_published</source>
+                <target>Publié</target>
             </trans-unit>
         </body>
     </file>

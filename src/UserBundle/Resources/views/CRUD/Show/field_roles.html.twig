@@ -1,0 +1,12 @@
+{% trans_default_domain 'UserAdminRoles' %}
+
+{% extends 'SonataAdminBundle:CRUD:show_array.html.twig' %}
+
+{% set exclude = ['ROLE_USER'] %}
+{% set roles = user_render_roles(value, exclude) %}
+
+{% block field %}
+    {% for role in roles %}
+        {{ role|trans }} <br>
+    {% endfor %}
+{% endblock field %}

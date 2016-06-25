@@ -1,0 +1,29 @@
+{% set displayLabel = true %}
+
+{% if field_description.options.display_label is defined and field_description.options.display_label == false %}
+    {% set displayLabel = false %}
+{% endif %}
+
+{% if displayLabel %}
+    <th{% if(is_diff|default(false)) %} class="diff"{% endif %}>
+        {% block name %}{{ admin.trans(field_description.label, {}, field_description.translationDomain) }}{% endblock %}
+    </th>
+{% endif %}
+<td>
+    {% block field %}
+        {% if field_description.options.safe %}
+            {{ value|raw }}
+        {% else %}
+            {{ value|nl2br }}
+        {% endif %}
+    {% endblock %}
+</td>
+
+{% block field_compare %}
+    {% if(value_compare is defined) %}
+        <td>
+            {% set value = value_compare %}
+            {{ block('field') }}
+        </td>
+    {% endif %}
+{% endblock %}

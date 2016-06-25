@@ -66,12 +66,12 @@
                 <source>form.label_content</source>
                 <target>Contenu</target>
             </trans-unit>
-            <trans-unit id="form.tab_page">
-                <source>form.tab_page</source>
+            <trans-unit id="tab_page">
+                <source>tab_page</source>
                 <target>Article</target>
             </trans-unit>
-            <trans-unit id="form.tab_publish">
-                <source>form.tab_publish</source>
+            <trans-unit id="tab_publish">
+                <source>tab_publish</source>
                 <target>Publication</target>
             </trans-unit>
             <trans-unit id="form.label_published">
@@ -81,6 +81,26 @@
             <trans-unit id="form.label_priority">
                 <source>form.label_priority</source>
                 <target>Priorité</target>
+            </trans-unit>
+            <trans-unit id="show.label_title">
+                <source>show.label_title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="show.label_description">
+                <source>show.label_description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="show.label_content">
+                <source>show.label_content</source>
+                <target>Contenu</target>
+            </trans-unit>
+            <trans-unit id="show.label_priority">
+                <source>show.label_priority</source>
+                <target>Priorité</target>
+            </trans-unit>
+            <trans-unit id="show.label_published">
+                <source>show.label_published</source>
+                <target>Publiée</target>
             </trans-unit>
         </body>
     </file>

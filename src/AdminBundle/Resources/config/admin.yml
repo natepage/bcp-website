@@ -46,3 +46,31 @@ services:
               manager_type: orm
               label: dashboard.page_label
               label_translator_strategy: sonata.admin.label.strategy.underscore
+
+    bcp.admin.user:
+        class: AdminBundle\Admin\UserAdmin
+        arguments:
+            - ~
+            - UserBundle\Entity\User
+            - ~
+        calls:
+            - [setUserManager, [@fos_user.user_manager]]
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              label: dashboard.user_label
+              label_translator_strategy: sonata.admin.label.strategy.underscore
+
+    bcp.admin.newsletter:
+        class: AdminBundle\Admin\NewsletterAdmin
+        arguments:
+            - ~
+            - AppBundle\Entity\Newsletter
+            - ~
+            - "@security.authorization_checker"
+            - "@security.token_storage"
+        tags:
+            - name: sonata.admin
+              manager_type: orm
+              label: dashboard.newsletter_label
+              label_translator_strategy: sonata.admin.label.strategy.underscore

@@ -3,27 +3,6 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
-        ROLE_INTERFACE_ADMIN:   ROLE_USER
-        ROLE_USER_SEE:          ROLE_INTERFACE_ADMIN
-        ROLE_USER_CREATE:       ROLE_USER_SEE
-        ROLE_USER_UPDATE:       ROLE_USER_SEE
-        ROLE_USER_REMOVE:       ROLE_USER_SEE
-        ROLE_USER_EMAIL:        ROLE_USER_SEE
-        ROLE_USER_ALL:         [ROLE_USER_SEE, ROLE_USER_CREATE, ROLE_USER_UPDATE, ROLE_USER_REMOVE, ROLE_USER_EMAIL]
-        ROLE_POST_SEE:          ROLE_INTERFACE_ADMIN
-        ROLE_POST_CREATE:       ROLE_POST_SEE
-        ROLE_POST_UPDATE:       ROLE_POST_SEE
-        ROLE_POST_REMOVE:       ROLE_POST_SEE
-        ROLE_POST_ALL:         [ROLE_POST_SEE, ROLE_POST_CREATE, ROLE_POST_UPDATE, ROLE_POST_REMOVE]
-        ROLE_PAGE_SEE:          ROLE_INTERFACE_ADMIN
-        ROLE_PAGE_CREATE:       ROLE_PAGE_SEE
-        ROLE_PAGE_UPDATE:       ROLE_PAGE_SEE
-        ROLE_PAGE_REMOVE:       ROLE_PAGE_SEE
-        ROLE_PAGE_ALL:         [ROLE_PAGE_SEE, ROLE_PAGE_CREATE, ROLE_PAGE_UPDATE, ROLE_PAGE_REMOVE]
-        ROLE_NEWSLETTER_SEE:    ROLE_INTERFACE_ADMIN
-        ROLE_NEWSLETTER_REMOVE: ROLE_NEWSLETTER_SEE
-        ROLE_NEWSLETTER_ALL:   [ROLE_NEWSLETTER_SEE, ROLE_NEWSLETTER_REMOVE]
-
         #ROLES SONATA ADMIN
         ROLE_POST_READER:
             - ROLE_BCP_ADMIN_POST_LIST
@@ -79,6 +58,32 @@ security:
             - ROLE_BCP_ADMIN_PDF_DELETE
             - ROLE_BCP_ADMIN_PDF_EXPORT
 
+        ROLE_USER_READER:
+            - ROLE_BCP_ADMIN_USER_LIST
+            - ROLE_BCP_ADMIN_USER_VIEW
+            - ROLE_INTERFACE_ADMIN
+        ROLE_USER_EDITOR:
+            - ROLE_USER_READER
+            - ROLE_BCP_ADMIN_USER_CREATE
+            - ROLE_BCP_ADMIN_USER_EDIT
+        ROLE_USER_ADMIN:
+            - ROLE_USER_EDITOR
+            - ROLE_BCP_ADMIN_USER_DELETE
+            - ROLE_BCP_ADMIN_USER_EXPORT
+
+        ROLE_NEWSLETTER_READER:
+            - ROLE_BCP_ADMIN_NEWSLETTER_LIST
+            - ROLE_BCP_ADMIN_NEWSLETTER_VIEW
+            - ROLE_INTERFACE_ADMIN
+        ROLE_NEWSLETTER_EDITOR:
+            - ROLE_NEWSLETTER_READER
+            - ROLE_BCP_ADMIN_NEWSLETTER_CREATE
+            - ROLE_BCP_ADMIN_NEWSLETTER_EDIT
+        ROLE_NEWSLETTER_ADMIN:
+            - ROLE_NEWSLETTER_EDITOR
+            - ROLE_BCP_ADMIN_NEWSLETTER_DELETE
+            - ROLE_BCP_ADMIN_NEWSLETTER_EXPORT
+
         ROLE_ADMIN:
             - ROLE_USER_ALL
             - ROLE_POST_ALL
@@ -86,6 +91,8 @@ security:
             - ROLE_NEWSLETTER_REMOVE
             - ROLE_POST_ADMIN
             - ROLE_PAGE_ADMIN
+            - ROLE_USER_ADMIN
+            - ROLE_NEWSLETTER_ADMIN
 
         ROLE_SUPER_ADMIN:      [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
@@ -116,7 +123,7 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/admin/, role: ROLE_INTERFACE_ADMIN }
         - { path: ^/sonata_admin/, role: ROLE_INTERFACE_ADMIN }
 
     access_decision_manager:

@@ -132,6 +132,15 @@ liip_imagine:
             filters:
                 relative_resize: { heighten: 400 }
 
+# User Configuration
+bcp_user:
+    excluded_admin_roles:
+        image: ~
+        pdf:   ~
+        newsletter:
+            - editor
+            - admin
+
 # Sonata Block Configuration
 sonata_block:
     default_contexts: [site]
@@ -139,12 +148,17 @@ sonata_block:
         sonata.admin.block.admin_list:
             contexts: [admin]
         sonata.admin.block.stats: ~
+        sonata.admin.block.search_result: ~
         admin.form_javascripts.block: ~
 
 # Sonata Admin Configuration
 sonata_admin:
     title: 'Bowling Club Poitevin'
     title_logo: bundles/app/img/logo_bcp.jpg
+    show_mosaic_button: false
+
+    templates:
+        user_block: UserBundle:Block:user_block.html.twig
 
     security:
         handler: sonata.admin.security.handler.role
@@ -152,30 +166,69 @@ sonata_admin:
     dashboard:
         blocks:
             - position: top
-              type: sonata.admin.block.stats
-              roles: [ROLE_POST_READER]
+              class:    col-lg-3 col-xs-6
+              type:     sonata.admin.block.stats
+              roles:    [ROLE_POST_READER]
               settings:
-                code: bcp.admin.post
-                icon: fa-newspaper-o
-                text: dashboard.stats.post_text
-                color: bg-yellow
+                code:   bcp.admin.post
+                icon:   fa-newspaper-o
+                text:   dashboard.stats.post_text
+                color:  bg-yellow
 
             - position: top
-              type: sonata.admin.block.stats
-              roles: [ROLE_PAGE_READER]
+              class:    col-lg-3 col-xs-6
+              type:     sonata.admin.block.stats
+              roles:    [ROLE_PAGE_READER]
               settings:
-                code: bcp.admin.page
-                icon: fa-file-text-o
-                text: dashboard.stats.page_text
-                color: bg-green
+                code:   bcp.admin.page
+                icon:   fa-file-text-o
+                text:   dashboard.stats.page_text
+                color:  bg-green
+
+            - position: top
+              class:    col-lg-3 col-xs-6
+              type:     sonata.admin.block.stats
+              roles:    [ROLE_USER_READER]
+              settings:
+                code:   bcp.admin.user
+                icon:   fa-users
+                text:   dashboard.stats.user_text
+                color:  bg-blue
+
+            - position: top
+              class:    col-lg-3 col-xs-6
+              type:     sonata.admin.block.stats
+              roles:    [ROLE_NEWSLETTER_READER]
+              settings:
+                code:   bcp.admin.newsletter
+                icon:   fa-send-o
+                text:   dashboard.stats.newsletter_text
+                color:  bg-red
 
             - position: left
-              type: sonata.admin.block.admin_list
+              type:     sonata.admin.block.admin_list
+              settings:
+                groups:
+                    - content
+
+            - position: right
+              type:     sonata.admin.block.admin_list
+              settings:
+                groups:
+                    - administration
 
         groups:
             content:
                 label: dashboard.group.content
                 label_catalogue: DashboardAdmin
+                icon: <i class="fa fa-folder"></i>
                 items:
                     - bcp.admin.post
                     - bcp.admin.page
+            administration:
+                label: dashboard.group.administration
+                label_catalogue: DashboardAdmin
+                icon: <i class="fa fa-cogs"></i>
+                items:
+                    - bcp.admin.user
+                    - bcp.admin.newsletter

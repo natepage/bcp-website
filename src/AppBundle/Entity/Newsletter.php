@@ -36,6 +36,14 @@ class Newsletter
     private $token;
 
     /**
+     * For sonata's form rendering.
+     */
+    public function __toString()
+    {
+        return $this->getMail() ? $this->getMail() . ' [' . $this->getToken() . ']' : '';
+    }
+
+    /**
      * Get id
      *
      * @return integer 

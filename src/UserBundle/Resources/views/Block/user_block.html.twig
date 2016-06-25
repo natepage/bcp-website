@@ -1,0 +1,20 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% set user = app.user %}
+{% set _logout_path = path('fos_user_security_logout') %}
+{% set _logout_text = 'layout.logout'|trans %}
+
+{% block user_block %}
+    {% if user %}
+        <li class="user-header bg-light-blue">
+            <i class="fa fa-user-secret user-block-logo-8x"></i>
+            <p>{{ user.username }}</p>
+        </li>
+
+        <li class="user-footer">
+            <div class="pull-right">
+                <a href="{{ _logout_path }}" class="btn btn-default btn-flat"><i class="fa fa-sign-out fa-fw"></i> {{ _logout_text }}</a>
+            </div>
+        </li>
+    {% endif %}
+{% endblock user_block %}

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="dashboard.newsletter_label">
+                <source>dashboard.newsletter_label</source>
+                <target>Newsletter</target>
+            </trans-unit>
+            <trans-unit id="dashboard.stats.newsletter_text">
+                <source>dashboard.stats.newsletter_text</source>
+                <target>Newsletter</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_newsletter_list">
+                <source>breadcrumb.link_newsletter_list</source>
+                <target>Liste des inscrit à la newsletter</target>
+            </trans-unit>
+            <trans-unit id="list.label_mail">
+                <source>list.label_mail</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="list.label_token">
+                <source>list.label_token</source>
+                <target>Code unique</target>
+            </trans-unit>
+            <trans-unit id="form.label_mail">
+                <source>form.label_mail</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="show.label_mail">
+                <source>show.label_mail</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="show.label_token">
+                <source>show.label_token</source>
+                <target>Code unique</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

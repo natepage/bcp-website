@@ -1,0 +1,7 @@
+services:
+    user.form.type.roles:
+        class: UserBundle\Form\Type\UserAdminRolesType
+        arguments:
+            - "@user.security.roles_list_builder"
+        tags:
+            - { name: form.type, alias: user_admin_roles }

@@ -33,8 +33,9 @@ class AdminController extends Controller
      */
     public function entityListAction(Request $request, $entity)
     {
+        $bundle = $entity == 'user' ? 'UserBundle' : 'AppBundle';
         $class = $this->getClassName($entity);
-        $repo = $this->getDoctrine()->getRepository('AppBundle:'.$class);
+        $repo = $this->getDoctrine()->getRepository($bundle.':'.$class);
         $search = $request->query->get('search');
 
         if(null !== $search && $search != ''){
