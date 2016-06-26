@@ -54,6 +54,14 @@ class UserAdmin extends AbstractAdmin
                 ->add('roles', 'user_admin_roles')
             ->end()
         ;
+
+        if($this->isGranted('ROLE_SUPER_ADMIN')){
+            $formMapper
+                ->with('tab_status')
+                    ->add('newsletter', 'checkbox', array('required' => false))
+                ->end()
+            ;
+        }
     }
 
     /**
@@ -101,6 +109,7 @@ class UserAdmin extends AbstractAdmin
                 ->add('locked')
                 ->add('expired')
                 ->add('credentialsExpired')
+                ->add('newsletter')
                 ->add('lastLogin', 'datetime', array('format' => 'd/m/Y, H:i'))
             ->end()
             ->with('tab_roles', array(
@@ -113,8 +122,7 @@ class UserAdmin extends AbstractAdmin
             ->end()
         ;
     }
-
-
+    
     /**
      * Set userManager
      *

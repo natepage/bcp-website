@@ -86,6 +86,10 @@
                 <source>form.label_credentials_expired</source>
                 <target>Accès expiré</target>
             </trans-unit>
+            <trans-unit id="orm.label_newsletter">
+                <source>form.label_newsletter</source>
+                <target>Inscrit à la newsletter</target>
+            </trans-unit>
             <trans-unit id="tab_roles">
                 <source>tab_roles</source>
                 <target>Roles</target>
@@ -129,6 +133,10 @@
             <trans-unit id="show.label_roles">
                 <source>show.label_roles</source>
                 <target>Roles</target>
+            </trans-unit>
+            <trans-unit id="show.label_newsletter">
+                <source>show.label_newsletter</source>
+                <target>Inscrit à la newsletter</target>
             </trans-unit>
         </body>
     </file>

@@ -8,7 +8,7 @@
             </trans-unit>
             <trans-unit id="dashboard.stats.newsletter_text">
                 <source>dashboard.stats.newsletter_text</source>
-                <target>Newsletter</target>
+                <target>Inscrits à la newsletter</target>
             </trans-unit>
             <trans-unit id="breadcrumb.link_newsletter_list">
                 <source>breadcrumb.link_newsletter_list</source>
