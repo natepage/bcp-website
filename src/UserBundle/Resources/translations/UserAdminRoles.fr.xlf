@@ -74,6 +74,14 @@
                 <source>render.newsletter_admin</source>
                 <target>[Newsletter] Suppression et export (+ édition)</target>
             </trans-unit>
+            <trans-unit id="header.super">
+                <source>header.super</source>
+                <target>Super Administrateurs</target>
+            </trans-unit>
+            <trans-unit id="render.super_admin">
+                <source>render.super_admin</source>
+                <target>[Super Administrateurs] Bénéficie de toutes les autorisations (+ administration newsletter)</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

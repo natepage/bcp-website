@@ -92,9 +92,12 @@ security:
             - ROLE_POST_ADMIN
             - ROLE_PAGE_ADMIN
             - ROLE_USER_ADMIN
-            - ROLE_NEWSLETTER_ADMIN
+            - ROLE_NEWSLETTER_READER
 
-        ROLE_SUPER_ADMIN:      [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_SUPER_ADMIN:
+            - ROLE_ADMIN
+            - ROLE_ALLOWED_TO_SWITCH
+            - ROLE_NEWSLETTER_ADMIN
 
     providers:
         fos_userbundle:

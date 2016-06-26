@@ -5,6 +5,7 @@ services:
             - %security.role_hierarchy.roles%
             - %bcp_user.excluded_admin_roles%
             - "@user.security.roles_transformer"
+            - "@security.authorization_checker"
 
     user.security.roles_transformer:
         class: UserBundle\Security\RolesTransformer

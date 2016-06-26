@@ -74,9 +74,9 @@ class NewsletterAdmin extends AbstractAdmin
 
     protected function configureRoutes(RouteCollection $collection)
     {
-        if($this->nativeIsGranted('ROLE_ADMIN')){
-            $collection->clearExcept('list', 'show');
-        }
+        //if($this->nativeIsGranted('ROLE_ADMIN')){
+        //    $collection->clearExcept('list', 'show');
+        //}
     }
 
     /**

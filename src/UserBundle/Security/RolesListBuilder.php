@@ -2,6 +2,8 @@
 
 namespace UserBundle\Security;
 
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+
 class RolesListBuilder implements RolesListBuilderInterface
 {
     /**
@@ -37,11 +39,22 @@ class RolesListBuilder implements RolesListBuilderInterface
      */
     private $rolesTransformer;
 
-    public function __construct(array $rolesHierarchy, array $excludedAdmins, RolesTransformerInterface $rolesTransformer)
+    /**
+     * @var AuthorizationCheckerInterface
+     */
+    private $authorizationChecker;
+
+    public function __construct(
+        array $rolesHierarchy,
+        array $excludedAdmins,
+        RolesTransformerInterface $rolesTransformer,
+        AuthorizationCheckerInterface $authorizationChecker
+    )
     {
         $this->rolesHierarchy = $rolesHierarchy;
         $this->excludedAdmins = $excludedAdmins;
         $this->rolesTransformer = $rolesTransformer;
+        $this->authorizationChecker = $authorizationChecker;
     }
 
     /**
@@ -61,11 +74,27 @@ class RolesListBuilder implements RolesListBuilderInterface
     }
 
     /**
+     * Get excludeRoles
+     */
+    private function getExcludeRoles()
+    {
+        $excludeRoles = $this->excludeRoles;
+
+        foreach($excludeRoles as $key => $role){
+            if($role == 'ROLE_SUPER_ADMIN' && $this->authorizationChecker->isGranted($role)){
+                unset($excludeRoles[$key]);
+            }
+        }
+
+        return $excludeRoles;
+    }
+
+    /**
      * Build the admin's roles list
      */
     private function buildExcludedRolesList()
     {
-        $excludeRoles = $this->excludeRoles;
+        $excludeRoles = $this->getExcludeRoles();
 
         foreach($this->excludedAdmins as $admin => $excludedRoles){
             $roles = empty($excludedRoles) ? $this->adminRoles : $excludedRoles;
