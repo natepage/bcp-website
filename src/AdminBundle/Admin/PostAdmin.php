@@ -3,6 +3,7 @@
 namespace AdminBundle\Admin;
 
 use AppBundle\Entity\Post;
+use AppBundle\Utils\Facebook\FacebookApplicationManager;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -12,8 +13,34 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class PostAdmin extends AbstractAdmin
 {
+    /**
+     * @var string
+     */
     protected $translationDomain = 'PostAdmin';
 
+    /**
+     * @var string
+     */
+    public $flashIcon = '<i class="fa fa-3x fa-newspaper-o"></i>';
+
+    /**
+     * @var string
+     */
+    public $flashFacebookIcon = '<i class="fa fa-3x fa-facebook-official"></i>';
+
+    /**
+     * @var string
+     */
+    public $flashNewsletterIcon = '<i class="fa fa-3x fa-send-o"></i>';
+
+    /**
+     * @var int
+     */
+    protected $maxPerPage = 15;
+
+    /**
+     * @var array
+     */
     protected $datagridValues = array(
         '_page' => 1,
         '_sort_order' => 'DESC',
@@ -29,6 +56,19 @@ class PostAdmin extends AbstractAdmin
      * @var ArrayCollection
      */
     private $oldPdfs;
+
+    /**
+     * @var FacebookApplicationManager
+     */
+    private $facebook;
+
+    public function __construct($code, $class, $baseControllerName, FacebookApplicationManager $facebook)
+    {
+        parent::__construct($code, $class, $baseControllerName);
+
+        $this->facebook = $facebook;
+    }
+
 
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -117,6 +157,7 @@ class PostAdmin extends AbstractAdmin
                 ->add('created', 'datetime', array('format' => 'd/m/Y, H:i'))
                 ->add('authorName')
                 ->add('published')
+                ->add('sharedNewsletter', 'datetime', array('format' => 'd/m/Y, H:i'))
             ->end()
             ->with('show.tab_images', array(
                 'class' => 'col-md-6'
@@ -135,6 +176,38 @@ class PostAdmin extends AbstractAdmin
                 ))
             ->end()
         ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBatchActions()
+    {
+        $actions = parent::getBatchActions();
+
+        if($this->isGranted('ROLE_POST_ADMIN')){
+            $actions['newsletter'] = array(
+                'label' => 'batch_action_newsletter',
+                'translation_domain' => $this->translationDomain,
+                'ask_confirmation' => true
+            );
+
+            if(!$this->facebook->getUserLongAccessToken()->tokenIsEmpty()){
+                $actions['facebook'] = array(
+                    'label' => 'batch_action_facebook',
+                    'translation_domain' => $this->translationDomain,
+                    'ask_confirmation' => true
+                );
+
+                $actions['newsletter_and_facebook'] = array(
+                    'label' => 'batch_action_newsletter_and_facebook',
+                    'translation_domain' => $this->translationDomain,
+                    'ask_confirmation' => true
+                );
+            }
+        }
+
+        return $actions;
     }
 
     /**

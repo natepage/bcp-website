@@ -17,6 +17,7 @@ services:
             - "@bcp.contact_provider"
             - "@templating"
             - %newsletter_from%
+            - "@translator"
 
     bcp.twig_site_pages:
         class: AppBundle\Utils\TwigSitePagesExtension

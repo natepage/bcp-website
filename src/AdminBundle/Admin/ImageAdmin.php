@@ -8,7 +8,20 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class ImageAdmin extends AbstractAdmin
 {
+    /**
+     * @var string
+     */
     protected $translationDomain = 'ImageAdmin';
+
+    /**
+     * @var int
+     */
+    protected $maxPerPage = 15;
+
+    /**
+     * @var string
+     */
+    public $flashIcon = '<i class="fa fa-3x fa-picture-o"></i>';
 
     protected function configureListFields(ListMapper $listMapper)
     {

@@ -29,12 +29,11 @@
     {{ form_row(form.published) }}
     {{ form_row(form.newsletter) }}
 
-    {% if post.fbId %}
-        <div class="hidden">
-            {{ form_row(form.facebook) }}
-            {{ form_row(form.facebook_message) }}
-        </div>
-    {% endif %}
+    <div {% if post.fbId %}class="hidden"{% endif %}>
+        {{ form_row(form.facebook) }}
+        {{ form_row(form.facebook_message) }}
+    </div>
+
     {{ form_row(form._token) }}
 
     {% if post.sharedNewsletter or post.fbId %}

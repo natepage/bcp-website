@@ -5,6 +5,7 @@ services:
             - ~
             - AppBundle\Entity\Post
             - AdminBundle:Post
+            - "@bcp.facebook"
         tags:
             - name: sonata.admin
               manager_type: orm
@@ -16,7 +17,7 @@ services:
         arguments:
             - ~
             - AppBundle\Entity\Image
-            - ~
+            - AdminBundle:CRUD
         tags:
             - name: sonata.admin
               manager_type: orm
@@ -28,7 +29,7 @@ services:
         arguments:
             - ~
             - AppBundle\Entity\Pdf
-            - ~
+            - AdminBundle:CRUD
         tags:
             - name: sonata.admin
               manager_type: orm
@@ -52,7 +53,7 @@ services:
         arguments:
             - ~
             - UserBundle\Entity\User
-            - ~
+            - AdminBundle:CRUD
         calls:
             - [setUserManager, [@fos_user.user_manager]]
         tags:
@@ -66,7 +67,7 @@ services:
         arguments:
             - ~
             - AppBundle\Entity\Newsletter
-            - ~
+            - AdminBundle:CRUD
         tags:
             - name: sonata.admin
               manager_type: orm

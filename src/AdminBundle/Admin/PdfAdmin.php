@@ -7,7 +7,20 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class PdfAdmin extends AbstractAdmin
 {
+    /**
+     * @var string
+     */
     protected $translationDomain = 'PdfAdmin';
+
+    /**
+     * @var int
+     */
+    protected $maxPerPage = 15;
+
+    /**
+     * @var string
+     */
+    public $flashIcon = '<i class="fa fa-3x fa-file-pdf-o"></i>';
 
     protected function configureFormFields(FormMapper $formMapper)
     {

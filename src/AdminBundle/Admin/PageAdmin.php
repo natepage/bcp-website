@@ -11,8 +11,24 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 
 class PageAdmin extends AbstractAdmin
 {
+    /**
+     * @var string
+     */
     protected $translationDomain = 'PageAdmin';
 
+    /**
+     * @var string
+     */
+    public $flashIcon = '<i class="fa fa-3x fa-file-text-o"></i>';
+
+    /**
+     * @var int
+     */
+    protected $maxPerPage = 15;
+
+    /**
+     * @var array
+     */
     protected $datagridValues = array(
         '_page' => 1,
         '_sort_order' => 'DESC',

@@ -66,7 +66,15 @@ class FacebookApplicationManager
      */
     private $tmpAccessToken;
 
-    public function __construct($id, $secret, $defaultGraphVersion, $pageId, TokenStorageInterface $tokenStorageInterface, AssetsHelper $assetsHelper, Router $router)
+    public function __construct(
+        $id,
+        $secret,
+        $defaultGraphVersion,
+        $pageId,
+        TokenStorageInterface $tokenStorageInterface,
+        AssetsHelper $assetsHelper,
+        Router $router
+    )
     {
         $this->id = $id;
         $this->secret = $secret;
@@ -195,8 +203,12 @@ class FacebookApplicationManager
         $response = new FacebookPostAsPageResponse();
         $accessToken = $this->getUserLongAccessToken();
 
+        if(!$post->getPublished()){
+            return $response->setException(new \Exception('flash_batch_facebook_post_not_published'));
+        }
+
         if($accessToken->tokenIsEmpty()){
-            return $response->setException(new \Exception('The access token is empty.'));
+            return $response->setException(new \Exception('flash_batch_facebook_access_token_empty'));
         }
 
         $this->application->setDefaultAccessToken($accessToken->getAccessToken());
@@ -231,6 +243,28 @@ class FacebookApplicationManager
         }
 
         return $response;
+    }
+
+    public function publishListOnPage(array $posts)
+    {
+        $responses = array(
+            'errors' => array()
+        );
+
+        foreach($posts as $post){
+            $postAsPage = $this->publishOnPage($post);
+
+            if($postAsPage->hasError()){
+                $responses['errors'][] = array(
+                    'message' => $postAsPage->getException()->getMessage(),
+                    'post' => $post->getTitle()
+                );
+            } else {
+                $post->setFbId($postAsPage->getId());
+            }
+        }
+
+        return $responses;
     }
 
     private function getUser()

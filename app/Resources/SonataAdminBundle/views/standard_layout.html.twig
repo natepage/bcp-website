@@ -345,7 +345,17 @@ file that was distributed with this source code.
 
     <script type="text/javascript">
         $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
+            $('[data-toggle="tooltip"]').tooltip();
+
+            var cpt = 1;
+            $('.alert-dismissable').each(function () {
+                var alert = $(this);
+
+                setTimeout(function () {
+                    alert.fadeOut("slow");
+                }, 3000 * cpt);//setTimeout
+                cpt++;
+            });//each
         })
     </script>
     </body>

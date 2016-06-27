@@ -11,17 +11,33 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 
 class UserAdmin extends AbstractAdmin
 {
+    /**
+     * @var string
+     */
     protected $translationDomain = 'UserAdmin';
+
+    /**
+     * @var string
+     */
+    public $flashIcon = '<i class="fa fa-3x fa-users"></i>';
 
     /**
      * @var UserManagerInterface
      */
     private $userManager;
 
+    /**
+     * @var int
+     */
+    protected $maxPerPage = 15;
+
+    /**
+     * @var array
+     */
     protected $datagridValues = array(
         '_page' => 1,
         '_sort_order' => 'ASC',
-        '_sort_by' => 'username'
+        '_sort_by' => 'username',
     );
 
     /**

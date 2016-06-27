@@ -133,6 +133,67 @@
                 <source>show.label_published</source>
                 <target>Publié</target>
             </trans-unit>
+            <trans-unit id="show.label_shared_newsletter">
+                <source>show.label_shared_newsletter</source>
+                <target>Diffusé à la newsletter</target>
+            </trans-unit>
+            <trans-unit id="batch_action_newsletter">
+                <source>batch_action_newsletter</source>
+                <target>Diffuser la newsletter</target>
+            </trans-unit>
+            <trans-unit id="flash_batch_newsletter_success">
+                <source>flash_batch_newsletter_success</source>
+                <target>La newsletter a été diffusée aux inscrits</target>
+            </trans-unit>
+            <trans-unit id="flash_batch_newsletter_error">
+                <source>flash_batch_newsletter_error</source>
+                <target>Une erreur est survenue lors de la diffusion</target>
+            </trans-unit>
+            <trans-unit id="flash_facebook_token_empty">
+                <source>flash_facebook_token_empty</source>
+                <target>
+                    <![CDATA[
+                        <span>
+                            Un problème est survenue lors de la connexion à Facebook.
+                            Merci de bien vouloir essayer de vous (re)connecter manuellement.
+
+                            <a href="%fb_login_url%">Connexion Facebook</a>
+                        </span>
+                    ]]>
+                </target>
+            </trans-unit>
+            <trans-unit id="batch_action_facebook">
+                <source>batch_action_facebook</source>
+                <target>Diffuser sur facebook</target>
+            </trans-unit>
+            <trans-unit id="flash_batch_facebook_success_all">
+                <source>flash_batch_facebook_success</source>
+                <target>Tous les articles ont été diffusés sur facebook</target>
+            </trans-unit>
+            <trans-unit id="flash_batch_facebook_success">
+                <source>flash_batch_facebook_success</source>
+                <target>L'article "%post_title%" a été diffusé sur facebook</target>
+            </trans-unit>
+            <trans-unit id="flash_batch_facebook_error">
+                <source>flash_batch_facebook_error</source>
+                <target>La diffusion sur facebook a échoué</target>
+            </trans-unit>
+            <trans-unit id="batch_action_newsletter_and_facebook">
+                <source>batch_action_newsletter_and_facebook</source>
+                <target>Diffuser la newsletter et sur facebook</target>
+            </trans-unit>
+            <trans-unit id="flash_batch_facebook_post_not_published">
+                <source>flash_batch_facebook_post_not_published</source>
+                <target>L'article n'est pas publié</target>
+            </trans-unit>
+            <trans-unit id="flash_batch_facebook_access_token_empty">
+                <source>flash_batch_facebook_access_token_empty</source>
+                <target>La connexion à facebook a échoué</target>
+            </trans-unit>
+            <trans-unit id="newsletter_post_not_published">
+                <source>newsletter_post_not_published</source>
+                <target>L'article "%post_title%" n'est pas publié</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

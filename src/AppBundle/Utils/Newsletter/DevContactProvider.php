@@ -24,7 +24,7 @@ class DevContactProvider implements ContactProviderInterface
 
     public function getContacts()
     {
-        $user = $this->om->getRepository('AppBundle:User')->find($this->id);
+        $user = $this->om->getRepository('UserBundle:User')->find($this->id);
 
         if(null === $user){
             throw new \InvalidArgumentException(sprintf("User with id[%s] doesn't exist.", $this->id));
