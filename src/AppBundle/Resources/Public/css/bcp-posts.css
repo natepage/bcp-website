@@ -12,15 +12,6 @@
     position: relative;
 }
 
-.bcp-post-admin-box-preview {
-    position: absolute;
-    z-index: 100;
-    top: 0;
-    background-color: rgba(223,105,26, .6);
-    color: #fff;
-    padding: 5px;
-}
-
 .bcp-post-box-preview-no-published .bcp-post-admin-box-preview {
     background-color: rgba(91,192,222, .6);
 }
@@ -70,11 +61,6 @@
 .bcp-post-title-preview, .bcp-post-description-preview-title {
     text-transform: uppercase;
     color: #df691a;
-}
-
-.bcp-post-description-preview-cd {
-    width: 100%;
-    height: 30px;
 }
 
 .bcp-post-title-preview {

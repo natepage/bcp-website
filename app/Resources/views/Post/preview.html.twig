@@ -10,9 +10,6 @@
                 {% if post.title|length < 140 %}{{ post.title }}{% else %}{{ post.title|slice(0, 134) }}...{% endif %}
             </h3>
             <div class="bcp-post-description-preview">
-                {% if app.user is not null and (is_granted('ROLE_ADMIN') or post.isOwn(app.user.id)) %}
-                    <div class="bcp-post-description-preview-cd"></div>
-                {% endif %}
                 <h3 class="bcp-post-description-preview-title">
                     {% if post.title|length < 140 %}{{ post.title }}{% else %}{{ post.title|slice(0, 134) }}...{% endif %}
                 </h3>
@@ -26,16 +23,5 @@
                 {# <span><i class="fa fa-eye"></i> {{ post.views }}</span> #}
             </div><!-- /.bcp-post-extract-preview -->
         </a>
-
-        {% if app.user is not null and (is_granted('ROLE_ADMIN') or post.isOwn(app.user.id)) %}
-            <div class="bcp-post-admin-box-preview">
-                {% if is_granted('ROLE_POST_UPDATE') %}
-                    <a href="{{ path('admin_post_update', {'id': post.id}) }}"><i class="fa fa-pencil"></i> Modifier</a>
-                {% endif %}
-                {% if is_granted('ROLE_POST_REMOVE') %}
-                    <a href="{{ path('admin_post_remove', {'id': post.id}) }}"><i class="fa fa-remove"></i> Supprimer</a>
-                {% endif %}
-            </div><!-- /.bcp-post-admin-box-preview -->
-        {% endif %}
     </div><!-- /.bcp-post-box-preview -->
 </div><!-- /.col-md-6 col-sm-12 -->
