@@ -46,6 +46,14 @@ class PostAdmin extends AbstractAdmin
         '_sort_order' => 'DESC',
         '_sort_by' => 'created'
     );
+
+    /**
+     * @var array
+     */
+    protected $accessMapping = array(
+        'newsletter' => 'NEWSLETTER',
+        'facebook' => 'FACEBOOK'
+    );
     
     /**
      * @var ArrayCollection
@@ -125,9 +133,9 @@ class PostAdmin extends AbstractAdmin
         $listMapper
             ->add('created', 'datetime', array('format' => 'd/m/Y, H:i'))
             ->addIdentifier('title')
-            ->add('description')
             ->add('authorName')
             ->add('published')
+            ->add('sharedNewsletter', 'datetime', array('format' => 'd/m/Y, H:i'))
         ;
     }
 
@@ -185,29 +193,35 @@ class PostAdmin extends AbstractAdmin
     {
         $actions = parent::getBatchActions();
 
-        if($this->isGranted('ROLE_POST_ADMIN')){
+        if($this->hasRole('ROLE_POST_ADMIN')) {
             $actions['newsletter'] = array(
                 'label' => 'batch_action_newsletter',
                 'translation_domain' => $this->translationDomain,
                 'ask_confirmation' => true
             );
 
-            if(!$this->facebook->getUserLongAccessToken()->tokenIsEmpty()){
-                $actions['facebook'] = array(
-                    'label' => 'batch_action_facebook',
-                    'translation_domain' => $this->translationDomain,
-                    'ask_confirmation' => true
-                );
+            /*$actions['facebook'] = array(
+                'label' => 'batch_action_facebook',
+                'translation_domain' => $this->translationDomain,
+                'ask_confirmation' => true
+            );
 
-                $actions['newsletter_and_facebook'] = array(
-                    'label' => 'batch_action_newsletter_and_facebook',
-                    'translation_domain' => $this->translationDomain,
-                    'ask_confirmation' => true
-                );
-            }
+            $actions['newsletter_and_facebook'] = array(
+                'label' => 'batch_action_newsletter_and_facebook',
+                'translation_domain' => $this->translationDomain,
+                'ask_confirmation' => true
+            );*/
         }
 
         return $actions;
+    }
+
+    public function hasRole($role)
+    {
+        $tokenStorage = $this->getConfigurationPool()->getContainer()->get('security.token_storage');
+        $authorizationChecker = $this->getConfigurationPool()->getContainer()->get('security.authorization_checker');
+
+        return null !== $tokenStorage->getToken() && $authorizationChecker->isGranted($role);
     }
 
     /**

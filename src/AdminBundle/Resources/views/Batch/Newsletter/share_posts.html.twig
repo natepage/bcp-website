@@ -6,7 +6,7 @@
         <p style="color: #FFF;">L'équipe du BCP Poitevin a le plaisir de vous annoncer qu'il y a des nouveautés sur son site.</p>
         <ul>
             {% for post in posts %}
-                <li><a href="{{ absolute_url('front_article_view', {'slug': post.slug}) }}" style="text-decoration: none;"></a></li>
+                <li><a href="{{ absolute_url('front_article_view', {'slug': post.slug}) }}" style="color: #FFF;">{{ post.title }}</a></li>
             {% endfor %}
         </ul>
     </div>

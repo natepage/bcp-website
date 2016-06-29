@@ -18,6 +18,8 @@ security:
             - ROLE_POST_EDITOR
             - ROLE_BCP_ADMIN_POST_DELETE
             - ROLE_BCP_ADMIN_POST_EXPORT
+            - ROLE_BCP_ADMIN_POST_NEWSLETTER
+            - ROLE_BCP_ADMIN_POST_FACEBOOK
 
         ROLE_PAGE_READER:
             - ROLE_BCP_ADMIN_PAGE_LIST
@@ -85,10 +87,6 @@ security:
             - ROLE_BCP_ADMIN_NEWSLETTER_EXPORT
 
         ROLE_ADMIN:
-            - ROLE_USER_ALL
-            - ROLE_POST_ALL
-            - ROLE_PAGE_ALL
-            - ROLE_NEWSLETTER_REMOVE
             - ROLE_POST_ADMIN
             - ROLE_PAGE_ADMIN
             - ROLE_USER_ADMIN

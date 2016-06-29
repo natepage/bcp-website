@@ -187,15 +187,15 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/ajax/cookie/consent",  name="ajax_cookie_consent")
+     * @Route("/ajax/cookie/{cookieName}",  name="ajax_cookie_consent")
      */
-    public function cookieConsent(Request $request)
+    public function cookieConsent(Request $request, $cookieName = null)
     {
-        if(!$request->isXmlHttpRequest()){
+        if(!$request->isXmlHttpRequest() || null === $cookieName || !is_scalar($cookieName)){
             throw $this->createNotFoundException();
         }
 
-        $cookie = new Cookie('bcp_cookie_consent', 'true', time() + (10 * 365 * 24 * 60 * 60));
+        $cookie = new Cookie($cookieName, 'true', time() + (10 * 365 * 24 * 60 * 60));
 
         $response = new Response("ok");
         $response->headers->setCookie($cookie);

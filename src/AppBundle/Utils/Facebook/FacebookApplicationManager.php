@@ -176,7 +176,10 @@ class FacebookApplicationManager
 
     public function getLoginUrl($url)
     {
-        $permissions = array();
+        $permissions = array(
+            'manage_pages',
+            'publish_pages'
+        );
 
         return $this->helper->getLoginUrl($url, $permissions);
     }

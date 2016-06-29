@@ -54,6 +54,10 @@
                 <source>list.label_published</source>
                 <target>Publié</target>
             </trans-unit>
+            <trans-unit id="list.label_shared_newsletter">
+                <source>list.label_shared_newsletter</source>
+                <target>Diffusé à la newsletter</target>
+            </trans-unit>
             <trans-unit id="form.label_title">
                 <source>form.label_title</source>
                 <target>Titre</target>
@@ -193,6 +197,21 @@
             <trans-unit id="newsletter_post_not_published">
                 <source>newsletter_post_not_published</source>
                 <target>L'article "%post_title%" n'est pas publié</target>
+            </trans-unit>
+            <trans-unit id="flash_cookie_new_interface_newsletter">
+                <source>flash_cookie_new_interface_newsletter</source>
+                <target>
+                    <![CDATA[
+                        <p>
+                            La diffusion s'éffectue désormais depuis cet écran, en bas à partir de la liste de toutes
+                            les actions réalisables sur les articles comme par exemple les supprimer.
+                        </p>
+                        <p>
+                            Sélectionnez les articles concernés, puis l'action et pour finir cliquez sur ok.
+                            <a href="#" data-url="%cookie_newsletter_url%" data-dismiss="alert" onclick="ajaxCookieConsent(this); return false;">J'ai compris !</a>
+                        </p>
+                    ]]>
+                </target>
             </trans-unit>
         </body>
     </file>

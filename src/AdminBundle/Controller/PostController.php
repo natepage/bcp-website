@@ -10,12 +10,19 @@ class PostController extends CRUDController
 {
     public function preList(Request $request)
     {
-        if($this->admin->isGranted('ROLE_POST_ADMIN')){
+        if($this->admin->hasRole('ROLE_POST_ADMIN')){
             $user = $this->getUser();
             $fb = $this->get('bcp.facebook');
+            $cookieName = 'bcp_new_interface_newsletter';
+
+            if(!$request->cookies->has($cookieName)){
+                $this->addFlash('sonata_flash_info', $this->admin->trans('flash_cookie_new_interface_newsletter', array(
+                    '%cookie_newsletter_url%' => $this->generateUrl('ajax_cookie_consent', array('cookieName' => $cookieName))
+                )), $this->admin->flashNewsletterIcon);
+            }
 
             if($fb->getUserLongAccessToken()->tokenIsEmpty()){
-                $currentPath = $this->admin->generateUrl('list', $this->admin->getFilterParameters());
+                $currentPath = $this->admin->generateUrl('list', $this->admin->getFilterParameters(), true);
                 $fbLoginUrl = $fb->getLoginUrl($currentPath);
 
                 $this->addFlash('sonata_flash_info', $this->admin->trans('flash_facebook_token_empty', array(
@@ -125,6 +132,10 @@ class PostController extends CRUDController
     {
         $modelManager = $this->admin->getModelManager();
         $newsletterManager = $this->get('bcp.newsletter');
+
+        if($this->isGranted('ROLE_SUPER_ADMIN')){
+            $newsletterManager->setIsSuperAdmin(true);
+        }
 
         $shared = $newsletterManager->shareList($posts);
 

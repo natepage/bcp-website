@@ -115,16 +115,26 @@
             /* Hide the input file */
             var renderInput = function(){
                 var parent = getParent();
+                var path = getPath();
 
                 parent.css('position', 'relative');
 
                 _self.css({
                     'opacity': 0,
-                    'position': 'absolute',
-                    'width': '95%',
-                    'height': '95%',
-                    'cursor': 'pointer'
+                    'position': 'absolute'
                 });
+
+                if(path === undefined){
+                    _self.css({
+                        'width': '95%',
+                        'height': '95%',
+                        'cursor': 'pointer'
+                    });
+                } else {
+                    _self.css({
+                       'top': '-9999px'
+                    });
+                }
 
                 logMessage('Input rendered');
             };

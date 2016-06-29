@@ -24,6 +24,8 @@ file that was distributed with this source code.
 <!DOCTYPE html>
 <html {% block html_attributes %}class="no-js"{% endblock %}>
     <head>
+        <link rel="icon" type="image/x-icon" href="{{ asset('bundles/app/img/logo_bcp.jpg') }}" />
+
         {% block meta_tags %}
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta charset="UTF-8">
@@ -346,17 +348,18 @@ file that was distributed with this source code.
     <script type="text/javascript">
         $(function () {
             $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    <script type="text/javascript">
+        function ajaxCookieConsent(btn)
+        {
+            var _url = $(btn).data('url');
 
-            var cpt = 1;
-            $('.alert-dismissable').each(function () {
-                var alert = $(this);
-
-                setTimeout(function () {
-                    alert.fadeOut("slow");
-                }, 3000 * cpt);//setTimeout
-                cpt++;
-            });//each
-        })
+            $.ajax({
+                method: 'GET',
+                url: _url
+            });
+        }
     </script>
     </body>
 </html>
