@@ -82,6 +82,22 @@
                 <source>render.super_admin</source>
                 <target>[Super Administrateurs] Bénéficie de toutes les autorisations (+ administration newsletter)</target>
             </trans-unit>
+            <trans-unit id="header.email">
+                <source>header.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="render.email_reader">
+                <source>render.email_reader</source>
+                <target>[Email] Visualisation</target>
+            </trans-unit>
+            <trans-unit id="render.email_editor">
+                <source>render.email_editor</source>
+                <target>[Email] Création et modification (+ visualisation)</target>
+            </trans-unit>
+            <trans-unit id="render.email_admin">
+                <source>render.email_admin</source>
+                <target>[Email] Suppression et export (+ édition)</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

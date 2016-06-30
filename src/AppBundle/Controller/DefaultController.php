@@ -104,7 +104,7 @@ class DefaultController extends Controller
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            40
+            20
         );
 
         return $this->render(':default:gallery.html.twig', array('images' => $pagination));

@@ -132,12 +132,20 @@ liip_imagine:
             filters:
                 relative_resize: { heighten: 400 }
 
+        new_post_filter:
+            quality: 100
+            filters:
+                thumbnail: { size: [600, 600], mode: inset }
+
 # User Configuration
 bcp_user:
     excluded_admin_roles:
         image: ~
         pdf:   ~
         newsletter:
+            - editor
+            - admin
+        email:
             - editor
             - admin
 
@@ -232,3 +240,4 @@ sonata_admin:
                 items:
                     - bcp.admin.user
                     - bcp.admin.newsletter
+                    - bcp.admin.email

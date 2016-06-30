@@ -29,19 +29,26 @@ class NewsletterManager implements NewsletterManagerInterface
     private $translator;
 
     /**
+     * @var EmailSenderInterface
+     */
+    private $emailSender;
+
+    /**
      * Constructor
      */
     public function __construct(
         ContactProviderInterface $contactProvider,
         EngineInterface $templating,
         $from,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
+        EmailSenderInterface $emailSender
     )
     {
         $this->contactProvider = $contactProvider;
         $this->templating = $templating;
         $this->from = $from;
         $this->translator = $translator;
+        $this->emailSender = $emailSender;
     }
 
     public function setIsSuperAdmin($isSuperAdmin)
@@ -59,14 +66,9 @@ class NewsletterManager implements NewsletterManagerInterface
         }
 
         $contacts = $this->contactProvider->getContacts();
-
         $now = new \DateTime();
-
-        $message = $this->getMessage()
-                        ->setSubject($this->getSubject($now))
-                        ->setFrom($this->from);
-
-        $mailer = $this->getMailer();
+        $from = $this->from;
+        $subject = $this->getSubject($now);
         
         foreach($contacts as $contact){
             if(!$contact instanceof ContactInterface){
@@ -77,11 +79,9 @@ class NewsletterManager implements NewsletterManagerInterface
                 'post' => $post,
                 'contact' => $contact
             ));
+            $to = array($contact->getEmail());
 
-            $message->setTo(array($contact->getEmail()));
-            $message->setBody($template, 'text/html', 'utf-8');
-
-            if($mailer->send($message)){
+            if($this->emailSender->send($from, $to, $subject, $template)){
                 $post->setSharedNewsletter($now);
             }
         }
@@ -94,8 +94,8 @@ class NewsletterManager implements NewsletterManagerInterface
     {
         $contacts = $this->contactProvider->getContacts();
         $now = new \DateTime();
-        $message = $this->getMessage()->setSubject($this->getSubject($now))->setFrom($this->from);
-        $mailer = $this->getMailer();
+        $from = $this->from;
+        $subject = $this->getSubject($now);
 
         $response = array(
             'sended' => false,
@@ -120,11 +120,9 @@ class NewsletterManager implements NewsletterManagerInterface
                     'posts' => $posts,
                     'contact' => $contact
                 ));
+                $to = (array($contact->getEmail()));
 
-                $message->setTo(array($contact->getEmail()));
-                $message->setBody($template, 'text/html', 'utf-8');
-
-                if($mailer->send($message)){
+                if($this->emailSender->send($from, $to, $subject, $template)){
                     foreach($posts as $post){
                         $post->setSharedNewsletter($now);
                     }
@@ -140,17 +138,5 @@ class NewsletterManager implements NewsletterManagerInterface
     private function getSubject(\DateTime $date)
     {
         return sprintf("[%s] Des nouveautés sur le site du BCP", $date->format('d-m-Y'));
-    }
-
-    private function getMessage()
-    {
-        return \Swift_Message::newInstance();
-    }
-
-    private function getMailer()
-    {
-        $transport = \Swift_MailTransport::newInstance();
-
-        return \Swift_Mailer::newInstance($transport);
     }
 }

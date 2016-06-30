@@ -86,16 +86,31 @@ security:
             - ROLE_BCP_ADMIN_NEWSLETTER_DELETE
             - ROLE_BCP_ADMIN_NEWSLETTER_EXPORT
 
+        ROLE_EMAIL_READER:
+            - ROLE_BCP_ADMIN_EMAIL_LIST
+            - ROLE_BCP_ADMIN_EMAIL_VIEW
+            - ROLE_INTERFACE_ADMIN
+        ROLE_EMAIL_EDITOR:
+            - ROLE_EMAIL_READER
+            - ROLE_BCP_ADMIN_EMAIL_CREATE
+            - ROLE_BCP_ADMIN_EMAIL_EDIT
+        ROLE_EMAIL_ADMIN:
+            - ROLE_EMAIL_EDITOR
+            - ROLE_BCP_ADMIN_EMAIL_DELETE
+            - ROLE_BCP_ADMIN_EMAIL_EXPORT
+
         ROLE_ADMIN:
             - ROLE_POST_ADMIN
             - ROLE_PAGE_ADMIN
             - ROLE_USER_ADMIN
             - ROLE_NEWSLETTER_READER
+            - ROLE_EMAIL_READER
 
         ROLE_SUPER_ADMIN:
             - ROLE_ADMIN
             - ROLE_ALLOWED_TO_SWITCH
             - ROLE_NEWSLETTER_ADMIN
+            - ROLE_EMAIL_ADMIN
 
     providers:
         fos_userbundle:

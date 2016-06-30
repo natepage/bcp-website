@@ -73,3 +73,15 @@ services:
               manager_type: orm
               label: dashboard.newsletter_label
               label_translator_strategy: sonata.admin.label.strategy.underscore
+
+    bcp.admin.email:
+            class: AdminBundle\Admin\EmailAdmin
+            arguments:
+                - ~
+                - AdminBundle\Entity\Email
+                - AdminBundle:Email
+            tags:
+                - name: sonata.admin
+                  manager_type: orm
+                  label: dashboard.email_label
+                  label_translator_strategy: sonata.admin.label.strategy.underscore

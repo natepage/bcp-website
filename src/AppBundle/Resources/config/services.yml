@@ -18,6 +18,10 @@ services:
             - "@templating"
             - %newsletter_from%
             - "@translator"
+            - "@bcp.email_sender"
+
+    bcp.email_sender:
+        class: AppBundle\Utils\Newsletter\EmailSender
 
     bcp.twig_site_pages:
         class: AppBundle\Utils\TwigSitePagesExtension

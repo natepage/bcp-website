@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="dashboard.email_label">
+                <source>dashboard.email_label</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_email_list">
+                <source>breadcrumb.link_email_list</source>
+                <target>Liste des emails</target>
+            </trans-unit>
+            <trans-unit id="breadcrumb.link_email_create">
+                <source>breadcrumb.link_email_create</source>
+                <target>Création d'un email</target>
+            </trans-unit>
+            <trans-unit id="batch_action_send_email">
+                <source>batch_action_send_email</source>
+                <target>Envoyer</target>
+            </trans-unit>
+            <trans-unit id="form.select_all_contacts">
+                <source>form.select_all_contacts</source>
+                <target>Tous les contacts</target>
+            </trans-unit>
+            <trans-unit id="tab.email">
+                <source>tab.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="tab.contacts">
+                <source>tab.contacts</source>
+                <target>Contacts</target>
+            </trans-unit>
+            <trans-unit id="box.email">
+                <source>box.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="box.contacts">
+                <source>box.contacts</source>
+                <target>Contacts</target>
+            </trans-unit>
+            <trans-unit id="form.label_email_from">
+                <source>form.label_email_from</source>
+                <target>Adresse mail d'envoi</target>
+            </trans-unit>
+            <trans-unit id="form.label_subject">
+                <source>form.label_subject</source>
+                <target>Sujet de l'email</target>
+            </trans-unit>
+            <trans-unit id="form.label_body">
+                <source>form.label_body</source>
+                <target>Corps de l'email</target>
+            </trans-unit>
+            <trans-unit id="form.label_contacts">
+                <source>form.label_contacts</source>
+                <target>Contacts</target>
+            </trans-unit>
+            <trans-unit id="filter.label_created">
+                <source>filter.label_created</source>
+                <target>Crée le</target>
+            </trans-unit>
+            <trans-unit id="filter.label_subject">
+                <source>filter.label_subject</source>
+                <target>Sujet</target>
+            </trans-unit>
+            <trans-unit id="filter.label_sent">
+                <source>filter.label_sent</source>
+                <target>Envoyé le</target>
+            </trans-unit>
+            <trans-unit id="list.label_created">
+                <source>list.label_created</source>
+                <target>Crée le</target>
+            </trans-unit>
+            <trans-unit id="list.label_subject">
+                <source>list.label_subject</source>
+                <target>Sujet</target>
+            </trans-unit>
+            <trans-unit id="list.label_sent">
+                <source>list.label_sent</source>
+                <target>Envoyé le</target>
+            </trans-unit>
+            <trans-unit id="show.label_created">
+                <source>show.label_created</source>
+                <target>Crée le</target>
+            </trans-unit>
+            <trans-unit id="show.label_sent">
+                <source>show.label_sent</source>
+                <target>Envoyé le</target>
+            </trans-unit>
+            <trans-unit id="show.label_email_from">
+                <source>show.label_email_from</source>
+                <target>Adresse mail d'envoi</target>
+            </trans-unit>
+            <trans-unit id="show.label_subject">
+                <source>show.label_subject</source>
+                <target>Sujet</target>
+            </trans-unit>
+            <trans-unit id="show.label_body">
+                <source>show.label_body</source>
+                <target>Corps</target>
+            </trans-unit>
+            <trans-unit id="flash_batch_send_email_success">
+                <source>flash_batch_send_email_success</source>
+                <target>L'envoi s'est bien passé</target>
+            </trans-unit>
+            <trans-unit id="flash_batch_send_email_error">
+                <source>flash_batch_send_email_error</source>
+                <target>Une erreur est survenue lors de l'envoi</target>
+            </trans-unit>
+            <trans-unit id="email_to_empty">
+                <source>email_to_empty</source>
+                <target>L'email n'a pas de contact paramétré</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

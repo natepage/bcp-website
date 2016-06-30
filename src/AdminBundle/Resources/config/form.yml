@@ -1,0 +1,7 @@
+services:
+    admin.form.type.contact:
+        class: AdminBundle\Form\Type\ContactFormType
+        arguments:
+            - "@bcp.contact_provider"
+        tags:
+            - { name: form.type, alias: admin_contacts }
