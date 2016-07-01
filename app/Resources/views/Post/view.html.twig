@@ -28,7 +28,6 @@
             </a>
         </div>
     </div>
-    {{ illuRender.showIllustrations(post.images) }}
     <div class="bcp-post-content-container">
         {{ post.content|raw }}
     </div>
@@ -38,6 +37,9 @@
                 <i class="fa fa-file-pdf-o fa-2x"></i><br>{{ pdf.alt }}
             </a>
         {% endfor %}
+    </div>
+    <div class="row">
+        {{ illuRender.showIllustrations(post.images) }}
     </div>
     <hr>
     <div class="text-left">

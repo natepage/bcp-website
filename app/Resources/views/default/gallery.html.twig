@@ -1,4 +1,5 @@
 {% extends ':default:index.html.twig' %}
+{% import '@App/Utils/illustrations_render.html.twig' as illuRender %}
 
 {% block content %}
     {% if images.getTotalItemCount > 40 %}
@@ -7,41 +8,7 @@
         </div><!-- /.col-md-12 -->
     {% endif %}
 
-    {% for image in images %}
-        <div class="col-xs-6 col-md-3">
-            <div class="bcp-post-illustration-preview bcp-gallery-img-box" data-toggle="modal" data-target="#modal-img-{{ image.id }}" data-img="{{ image.webPath|imagine_filter('post_preview') }}">
-                <i class="fa fa-5x fa-spin fa-circle-o-notch bcp-image-loader"></i>
-            </div><!-- /.bcp-post-illustration-preview -->
-        </div><!-- /.col-xs-6 col-md-3 -->
-
-        <div id="modal-img-{{ image.id }}" class="modal fade">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header" style="min-height: 50px;">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-
-                    </div>
-                    <div class="modal-body">
-                        <img style="max-height: 600px; width: 100%;" src="{{ asset(image.webPath) }}">
-                        <div class="text-center" style="width: 100%;">
-                            <h4 class="bcp-post-title-preview">
-                                <a href="{{ path('front_article_view', {'slug': image.post.slug}) }}">{{ image.post.title }}</a>
-                            </h4>
-                            <p>{{ image.post.description }}</p>
-                        </div><!-- /.text-center -->
-                    </div><!-- /.modal-body -->
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-    {% else %}
-        <div class="alert alert-info">
-            <h3>Aucune image n'a été trouvée.</h3>
-            <p>Si vous tentez d'effectuer une recherche nous vous invitons à revoir
-                vos critères. Dans le cas contraire, merci de bien vouloir rééssayer ultérieurement, l'équipe
-                du Bowling Club Poitevin met tout en oeuvre pour résoudre cet incident dans les plus brefs délais.</p>
-            <p>Merci de votre compréhension.</p>
-        </div><!-- /.alert alert-info -->
-    {% endfor %}
+    {{ illuRender.showIllustrations(images, true) }}
 
     {% if images.getTotalItemCount > 40 %}
         <div class="col-md-12 col-sm-12 text-right">

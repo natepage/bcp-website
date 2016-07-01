@@ -1,37 +1,21 @@
-{% macro showIllustrations(images) %}
-    {% if images|length > 0 %}
-        <div class="bcp-post-illustration-container">
-        {% if images|length == 1 %}
-            <img class="bcp-post-illustration" src="{{ images.first.webPath|imagine_filter('post_view') }}" alt="img-{{ images.first.id }}">
-        {% else %}
-            <div id="bcp-post-illustrations-carousel" class="carousel slide" data-ride="carousel" data-interval="10000">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    {% for image in images %}
-                        <li data-target="#carousel-example-generic" data-slide-to="0"{% if loop.first %} class="active"{% endif %}></li>
-                    {% endfor %}
-                </ol>
+{% macro showIllustrations(images, addLink = false) %}
+    {% for image in images %}
+        {% set img_normal = asset(image.webPath|imagine_filter('post_view')) %}
+        {% set img_preview = asset(image.webPath|imagine_filter('post_preview')) %}
+        {% set img_title = image.post.title %}
+        {% set img_post_path = path('front_article_view', {'slug': image.post.slug}) %}
 
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                    {% for image in images %}
-                        <div class="item{% if loop.first %} active{% endif %}">
-                            <img style="height: 400px; width: 100%;" src="{{ asset(image.webPath) }}" alt="img-{{ image.id }}">
-                        </div>
-                    {% endfor %}
+        <div class="col-xs-6 col-md-3">
+            <a href="{{ img_normal }}"
+               data-toggle="lightbox"
+               data-gallery="post_gallery"
+               data-title="{{ img_title }}"
+               {% if addLink %}data-footer="<a href='{{ img_post_path }}'>Accéder à l'article</a>"{% endif %}
+            >
+                <div class="bcp-post-illustration-preview bcp-gallery-img-box" data-img="{{ img_preview }}">
+                    <i class="fa fa-5x fa-spin fa-circle-o-notch bcp-image-loader"></i>
                 </div>
-
-                <!-- Controls -->
-                <a class="left carousel-control" href="#bcp-post-illustrations-carousel" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Précédente</span>
-                </a>
-                <a class="right carousel-control" href="#bcp-post-illustrations-carousel" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Suivante</span>
-                </a>
-            </div>
-        {% endif %}
+            </a>
         </div>
-    {% endif %}
+    {% endfor %}
 {% endmacro %}

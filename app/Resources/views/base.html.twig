@@ -25,6 +25,7 @@
             <link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap-superhero.css') }}">
             <link rel="stylesheet" href="{{ asset('bundles/app/css/font-awesome.min.css') }}">
             <link rel="stylesheet" href="{{ asset('bundles/app/css/bcp-styles.css') }}">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.css">
         {% endblock stylesheets %}
 
         {% block favicon %}
@@ -68,6 +69,7 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
             <script type="text/javascript" src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/app/js/panel-hideable.js') }}"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/4.0.1/ekko-lightbox.min.js"></script>
 
             <script type="text/javascript">
                 $(document).ready(function(){
@@ -97,6 +99,14 @@
                         };
 
                         imgDl.src = illuDiv.data('img');
+                    });
+
+                    /**
+                     * Gestion des ligthbox
+                     */
+                    $('*[data-toggle="lightbox"]').click(function(e){
+                        e.preventDefault();
+                        $(this).ekkoLightbox();
                     });
                 });
             </script>

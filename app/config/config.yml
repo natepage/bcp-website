@@ -130,12 +130,7 @@ liip_imagine:
         post_view:
             quality: 100
             filters:
-                relative_resize: { heighten: 400 }
-
-        new_post_filter:
-            quality: 100
-            filters:
-                thumbnail: { size: [600, 600], mode: inset }
+                relative_resize: { heighten: 600 }
 
 # User Configuration
 bcp_user:
