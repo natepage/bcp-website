@@ -10,7 +10,7 @@
                data-toggle="lightbox"
                data-gallery="post_gallery"
                data-title="{{ img_title }}"
-               {% if addLink %}data-footer="<a href='{{ img_post_path }}'>Accéder à l'article</a>"{% endif %}
+               {% if addLink %}data-footer="<div style='width: 100%;text-align: center;'><a href='{{ img_post_path }}' class='btn btn-warning'>Accéder à l'article</a></div>"{% endif %}
             >
                 <div class="bcp-post-illustration-preview bcp-gallery-img-box" data-img="{{ img_preview }}">
                     <i class="fa fa-5x fa-spin fa-circle-o-notch bcp-image-loader"></i>
